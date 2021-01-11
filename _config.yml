@@ -9,7 +9,7 @@ description:           >
   Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/) 
   such as Cloudflare Workers.
 
-clap_button: false
+clap_button:           true
 
 logo:                  assets/img/logo_d.png
 favicon:               assets/img/werker.png
