@@ -1,4 +1,4 @@
-# @werker
+# Werker Tools
 
 <picture class="app-button" style="display:block;text-align:center">
   <img src="assets/img/werker.png" alt="Logo" style="height:10rem;width:10rem; margin:5rem 0">

@@ -1,9 +1,9 @@
-url:                   https://worker-utils.github.io
+url:                   https://worker-tools.github.io
 baseurl:               ''
 
 lang:                  en
 
-title:                 "@werker"
+title:                 Worker Tools
 tagline:               Tools for writing HTTP servers
 description:           >
   Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/) 
@@ -11,15 +11,15 @@ description:           >
 
 clap_button: true
 
-logo:                  assets/img/logo_l.svg
-favicon:               assets/img/logo.svg
-apple_touch_icon:      assets/img/logo.svg
+logo:                  assets/img/logo_d.png
+favicon:               assets/img/werker.png
+apple_touch_icon:      assets/img/werker.png
 
 author:
   name:                Florian Klampfer
   email:               mail@qwtel.com
   social:
-    github:            https://github.com/worker-utils/worker-utils.github.io
+    github:            https://github.com/worker-tools/worker-tools.github.io
     npm:               https://www.npmjs.com/org/werker
 
 # menu:
