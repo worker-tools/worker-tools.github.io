@@ -1,0 +1,197 @@
+url:                   https://worker-utils.github.io
+baseurl:               ''
+
+lang:                  en
+
+title:                 "@werker"
+tagline:               Tools for writing HTTP servers
+description:           >
+  Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/) 
+  such as Cloudflare Workers.
+
+clap_button: true
+
+logo:                  assets/img/logo_l.svg
+favicon:               assets/img/logo.svg
+apple_touch_icon:      assets/img/logo.svg
+
+author:
+  name:                Florian Klampfer
+  email:               mail@qwtel.com
+  social:
+    github:            https://github.com/worker-utils/worker-utils.github.io
+    npm:               https://www.npmjs.com/org/werker
+
+# menu:
+#   - title:             LICENSE
+#     url:              /LICENSE/
+#   - title:             CHANGELOG
+#     url:              /CHANGELOG/
+# legal:
+#   - title:             LICENSE
+#     url:              /LICENSE/
+#   - title:             CHANGELOG
+#     url:              /CHANGELOG/
+
+copyright:             © 2021. All rights reserved.
+
+permalink:             /:categories/:year-:month-:day-:title/
+
+collections:
+  featured_categories:
+    permalink:         /:name/
+    output:            true
+  featured_tags:
+    permalink:         /tag-:name/
+    output:            true
+  projects:
+    permalink:         /projects/:path/
+    output:            true
+
+theme:                 jekyll-theme-hydejack
+
+google_fonts:          false
+font:                  false
+font_heading:          false
+font_code:             false
+ 
+accent_image:
+  background:          '#999'
+  overlay:             false
+accent_color:          '#999'
+theme_color:           '#999'
+
+defaults:
+  - scope:
+      path:            README
+    values:
+      layout:          welcome
+  - scope:
+      path:            assets/
+    values:
+      sitemap:         false
+  - scope:
+      path:            licenses/
+    values:
+      sitemap:         false
+  - scope:
+      type:            projects
+    values:
+      seo:
+        type:          WebPage
+  - scope:
+      type:            featured_categories
+    values:
+      seo:
+        type:          WebPage
+  - scope:
+      type:            featured_tags
+    values:
+      seo:
+        type:          WebPage
+
+kramdown:
+  math_engine:         mathjax
+  math_engine_opts:    {}
+  footnote_backlink:   '&#x21a9;&#xfe0e;'
+
+hydejack:
+  post_addons:         [about, newsletter, related, random, comments]
+  project_addons:      [about, newsletter, other, comments]
+  no_mark_external:    false
+  no_push_state:       false
+  no_drawer:           false
+  no_navbar:           false
+  no_search:           true
+  no_inline_css:       false
+  no_page_style:       false
+  no_break_layout:     true
+  no_toc:              false
+  no_third_column:     false
+  no_large_headings:   false
+  no_structured_data:  false
+  no_theme_color:      false
+  use_lsi:             true
+  cookies_banner:      false
+  advertise:           true
+  hide_dates:          false
+  dark_mode:
+    always:            false
+    dynamic:           true
+    icon:              true
+  offline:
+    enabled:           false
+    cache_version:     7
+    precache_assets:
+      - /assets/img/swipe.svg
+
+exclude:
+  - .jekyll-cache
+  - .sass-cache
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - wrangler.toml
+include:
+  - .well-known
+  - LICENSE.md
+
+plugins:
+  # - jekyll-paginate
+  - jekyll-default-layout
+  - jekyll-feed
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-redirect-from
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-titles-from-headings
+  - jekyll-include-cache
+  - jekyll-last-modified-at
+
+optional_front_matter:
+  remove_originals:    true
+readme_index:
+  remove_originals:    true
+  with_frontmatter:    true
+relative_links:
+  collections:         true
+titles_from_headings:
+  strip_title:         true
+  collections:         true
+compress_html:
+  comments:            ["<!-- ", " -->"]
+  clippings:           all
+  endings:             all
+  ignore:
+    envs:              [development]
+sass:
+  style:               compressed
+
+jekyll_compose:
+  default_front_matter:
+    drafts:
+      layout: post
+      description: > 
+        A short ~160 character description of your post for search engines,
+        social media previews, etc.
+      image:
+        path: /assets/img/sidebar-bg.jpg
+    posts:
+      layout: post
+      description: > 
+        A short ~160 character description of your post for search engines,
+        social media previews, etc.
+      image:
+        path: /assets/img/sidebar-bg.jpg
+    projects:
+      layout: project
+      description: > 
+        A short ~160 character description of your post for search engines,
+        social media previews, etc.
+      image:
+        path: /assets/img/sidebar-bg.jpg
+      links:
+        - title: Project Link
+          url: https://example.com
