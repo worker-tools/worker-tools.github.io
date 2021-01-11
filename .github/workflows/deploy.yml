@@ -15,3 +15,5 @@ jobs:
         env:
           BUNDLE_GITHUB__COM: x-access-token:${{ secrets.GH_REPO_PAT }}
           JEKYLL_PAT: ${{ secrets.GH_REPO_PAT }}
+        with:
+          target_branch: gh-pages
