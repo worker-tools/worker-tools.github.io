@@ -4,7 +4,7 @@
   <img src="assets/img/werker.png" alt="Logo" style="height:10rem;width:10rem; margin:5rem 0">
 </picture>
 
-Tools for writing HTTP servers in [Worker Environments][1] such as Cloudflare Workers.
+Tools for writing HTTP servers in [Worker Environments][1]{:.external} such as Cloudflare Workers.
 {:.lead.centered style="max-width:560px;margin-left:auto;margin-right:auto"}
 
 [1]: https://workers.js.org/
@@ -18,7 +18,7 @@ Tools for writing HTTP servers in [Worker Environments][1] such as Cloudflare Wo
 * Table of Contents
 {:toc .large-only}
 
-Worker Utils ([**@werker**][2]) are a collection of composable libraries for building web server in [Worker Environments][1] such as Cloudflare Workers. 
+Worker Utils ([**@werker**][2]) are a collection of composable libraries for building web server in [Worker Environments][1]{:.external} such as Cloudflare Workers. 
 Most also work in Service Workers for code sharing between client and server.
 
 <!-- The goal is to build an entire web framework, similar to express.js. -->
