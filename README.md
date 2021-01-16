@@ -1,8 +1,10 @@
-# Worker Tools
+---
+title: Worker Tools
+---
 
-<picture class="app-button" style="display:block; text-align:center">
+<p align="center"><picture class="app-button" style="display:block; text-align:center">
   <img src="assets/img/logo.svg" alt="Logo" style="height:10rem; width:10rem; margin:5rem 0" width="172" height="172">
-</picture>
+</picture></p>
 
 Tools for writing HTTP servers in [Worker Environments][1]{:.external} such as Cloudflare Workers.
 {:.lead.centered style="max-width:560px;margin-left:auto;margin-right:auto"}
