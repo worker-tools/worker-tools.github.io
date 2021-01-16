@@ -11,9 +11,9 @@ description:           >
 
 clap_button:           true
 
-logo:                  assets/img/logo_d.png
-favicon:               assets/img/werker.png
-apple_touch_icon:      assets/img/werker.png
+logo:                  assets/img/logo_s.svg
+favicon:               assets/img/logo.svg
+apple_touch_icon:      assets/img/logo.svg
 
 author:
   name:                Florian Klampfer
@@ -56,10 +56,10 @@ font_heading:          false
 font_code:             false
  
 accent_image:
-  background:          '#999'
+  background:          'linear-gradient(to bottom, #e9bc4b, #f38020)'
   overlay:             false
-accent_color:          '#999'
-theme_color:           '#999'
+accent_color:          rgb(243,128,32)
+theme_color:           rgb(243,128,32)
 
 defaults:
   - scope:
