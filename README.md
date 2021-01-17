@@ -26,8 +26,6 @@ Most also work in Service Workers for code sharing between client and server.
 
 ## HTML Templating
 
-<p><clap-button url="#html-templating" text-placement="bottom" nowave></clap-button></p>
-
 ## Cookies
 
 ## KV Storage
