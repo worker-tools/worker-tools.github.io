@@ -6,9 +6,9 @@ logo: |
   </picture>
 description: >
   Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/){:.external} such as Cloudflare Workers.
-# buttons: |
-#   [Foo](#foo){:.btn.btn-primary}
-#   [Bar](#bar){:.btn.btn-default style="font-weight:normal"}
+buttons: >
+  [Get Started](#tools){:.btn.btn-primary}
+  [Contribute](#contributing){:.btn.btn-default style="font-weight:normal"}
 ---
 
 # Worker Tools
@@ -24,20 +24,23 @@ Most also work in Service Workers for code sharing between client and server.
 [1]: https://workers.js.org/
 [2]: https://www.npmjs.com/org/werker
 
-## HTML Templating
+## Tools
+### HTML Templating
 
-## Cookies
+### Cookies
 
-## KV Storage
+### KV Storage
 
-## Response Creators
+### Response Creators
 
-## Router
+### Router
 
-## Sessions
+### Sessions
 
-## Content Negotiation
+### Content Negotiation
 
-## CORS
+### CORS
 
-## Authorization
+### Authorization
+
+## Contributing
