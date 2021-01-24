@@ -16,7 +16,7 @@ buttons: >
 * Table of Contents
 {:toc .large-only}
 
-Worker Tools are a collection of TypeScript libraries for writing web servers in [Worker Environments][1]{:.external} such as Cloudflare Workers. 
+Worker Tools are a collection of TypeScript libraries for writing web servers in [Worker Environments][1]{:.external} such as Cloudflare Workers.
 
 <!-- [GitHub][3], [npm][2]. -->
 
@@ -29,7 +29,7 @@ Many of the tools accomplish the same goals as a web framework, but they are pro
 
 All modules are written in TypeScript and provide full type declarations and source maps for the best developer experience (tested in VSCode).
 
-Most have no dependencies beyond what is provided by a [Worker Environment][2]. 
+Most have no dependencies beyond what is provided by a [Worker Environment][1]. 
 For those that have dependencies, only such that provide ES moduls are used. 
 This makes makes it possible to use the tools without a bundler in the browser or even Deno, using either [UNPKG with `?module`](https://unpkg.com/#query-params) or [Skypack](https://skypack.dev).
 
