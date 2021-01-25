@@ -5,7 +5,7 @@ logo: |
     <img src="assets/img/logo.svg" alt="Logo" width="172" height="172">
   </picture>
 description: >
-  Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/){:.external} such as Cloudflare Workers.
+  Tools for writing HTTP servers in [**Worker Environments**](https://workers.js.org/){:.external} such as **Cloudflare Workers**.
 buttons: >
   [Get Started](#tools){:.btn.btn-primary}
   [Contribute](#contributing){:.btn.btn-default style="font-weight:normal"}
@@ -25,13 +25,19 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 [3]: https://github.com/worker-tools  
 
 ## Tools
-Many of the tools accomplish the same goals as a web framework, but they are provided as standalone libraries.
+Workers Tools accomplish many of the **same goals as a web framework**, but they are provided as **standalone libraries**.
 
-All modules are written in TypeScript and provide full type declarations and source maps for the best developer experience (tested in VSCode).
+All modules are **written in TypeScript** and provide **full type declarations and source maps** for the best developer experience (tested in VSCode).
 
 Most have no dependencies beyond what is provided by a [Worker Environment][1]. 
-For those that have dependencies, only such that provide ES moduls are used. 
-This makes makes it possible to use the tools without a bundler in the browser or even Deno, using either [UNPKG with `?module`](https://unpkg.com/#query-params) or [Skypack](https://skypack.dev).
+For those that have dependencies, only such that provide **ES module exports** are used. 
+This makes it possible to use them **without a bundler** (browser, Deno) using either UNPKG's [`?module`](https://unpkg.com/#query-params)  parameter or [Skypack](https://skypack.dev). E.g.:
+
+```ts
+import { html } from 'https://unpkg.com/@worker-tools/html?module';
+/* --- or --- */
+import { html } from 'https://cdn.skypack.dev/@worker-tools/html?dts';
+```
 
 ### [HTML Templating](https://github.com/worker-tools/html)
 HTML templating and streaming response library.
