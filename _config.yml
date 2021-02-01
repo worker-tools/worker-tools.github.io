@@ -63,6 +63,10 @@ theme_color:           rgb(243,128,32)
 
 defaults:
   - scope:
+      path:            ''
+    values:
+      invert_sidebar:  true
+  - scope:
       path:            README
     values:
       layout:          welcome
