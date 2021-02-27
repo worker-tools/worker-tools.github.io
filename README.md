@@ -18,8 +18,6 @@ buttons: >
 
 Worker Tools are a collection of TypeScript libraries for writing web servers in [Worker Environments][1]{:.external} such as Cloudflare Workers.
 
-<!-- [GitHub][3], [npm][2]. -->
-
 [1]: https://workers.js.org/
 [2]: https://www.npmjs.com/org/werker
 [3]: https://github.com/worker-tools  
@@ -79,23 +77,137 @@ const example = new Request('/', { headers: { 'cookie': 'foo=bar; fizz=buzz' } }
 const cookieStore = new RequestCookieStore(example);
 ```
 
+### [Signed Cookie Store](https://github.com/worker-tools/signed-cookie-store)
+An implementation of the Cookie Store API that transparently signs cookies via Web Cryptography API.
+
+```ts
+import { SignedCookieStore } from '@worker-tools/signed-cookie-store';
+const key = await SignedCookieStore.deriveKey({ secret: 'Password123' });
+const sigCookieStore = new SignedCookieStore(cookieStore, key);
+await sigCookieStore.set('foo', 'bar');
+```
+
+It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
+
+
+### [Encrypted Cookie Store](https://github.com/worker-tools/encrypted-cookie-store)
+An implementation of the Cookie Store API that transparently encrypted cookie values via Web Cryptography API.
+
+```ts
+import { EncryptedCookieStore } from '@worker-tools/encrypted-cookie-store';
+const key = await EncryptedCookieStore.deriveKey({ secret: 'Password123' });
+const encCookieStore = new EncryptedCookieStore(cookieStore, key);
+await encCookieStore.set('foo', 'bar');
+```
+
+It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
+
+
+### [Routing](https://github.com/worker-tools/router)
+Worker Tools currently only provides a placeholder for a future routing solution.
+
+In the meantime, here are some alternatives:
+
+- [Tiny Request Router](https://github.com/berstend/tiny-request-router).
+  Highly recommended. It might be a little too tiny for many usecases, but it is a good starting point.
+  Fully typed!
+  
+- [Workbox Routing](https://developers.google.com/web/tools/workbox/modules/workbox-routing).
+  A routing solution for Service Workers made by Google. I haven't tried to personally, but it shoud work in Cloudflare Workers as well.
+
+
+### [Middleware](https://github.com/worker-tools/middleware)
+Worker Tools currently only provides a placeholder for a future middleware solution.
+
+In the meantime, here is a TypeScript-safe pattern you can use. The goal is the let developers write close-to vanilla request handlers (as outlinded in various Cloudflare Workers tutorials, i.e. `(event: FetchEvent) => Promise<Response>`), while letting the middleware enhance them in various ways. 
+
+```ts
+// Only requirement for developers is that they provde the fetch `event` as a field in a record
+export type BaseArg = { event: FetchEvent };
+
+// Our example middleware will add a `cookieStore` field to the argument
+export type CookiesArgs = { cookieStore: CookieStore };
+export type CookiesHandler<A extends BaseArg> = (args: A & CookiesArgs) => Promise<Response>;
+
+export interface CookiesOptions { /* user-provided options for middleware */}
+```
+
+This is the actual middleware: A function that wraps the original request handler:
+
+```ts
+export const cookiesMiddleware = (opts: CookiesOptions = {}) => 
+  <A extends BaseArg>(handler: CookiesHandler<A>) => 
+    async (args: A) => {
+      // Do work before
+      const cookieStore = new RequestCookieStore(args.event.request);
+      
+      // Invoke user handler (with augemented args)
+      const response = await handler({ ...args, cookieStore });
+      
+      // Do work after
+      const { body, status, statusText, headers } = response;
+      return new Response(body, { 
+        status, statusText, headers: [...headers, ...cookieStore.headers],
+      });
+    };
+```
+
+#### Usage
+What's good about this pattern is that all the weird type-foo goes into the middleware itself. Developers, for the most part, needn't
+concern themselves with types. Their editor just "magicially" picks up the correct types for `event`  and `cookieStore`. 
+
+
+```ts
+self.addEventListener('fetch', event => event.respondWith(handleEvent({ event })))
+
+const handleEvent = cookiesMiddleware(/* no opts */)(async ({ event, cookieStore }) => {
+  const hello = (await cookieStore.get('hello'))?.value;
+  await cookieStore.set('hello', 'Hello Cookie!');
+  return new Response(hello ?? 'Reload page!');
+});
+```
+
+Because the middleware is written in a defensive way (`<A extends BaseArg>`), middlewares can be mixed and matched.
+For example, the following works assuming `myOtherMiddleware` follows the the same pattern as `cookieMiddleware`:
+
+```ts
+self.addEventListener('fetch', event => event.respondWith(handleEvent({ event })))
+
+// We can separate the options application:
+const withCookies = cookiesMiddleware()
+const withOther = myOtherMiddleware();
+
+const handleEvent = withCookies(withOther(async ({ event, cookieStore }) => {
+  return new Response('Hello World!');
+}));
+```
+
+#### Limitations
+Unfortunately, this pattern isn't perfect: Adding an extra field (without creating a seaprate middleware) requires specifying type paramters by the user:
+
+```ts
+self.addEventListener('fetch', event => event.respondWith(handleEvent({
+  event, 
+  url: new URL(event.request.url), // an additional field...
+})));
+
+const withCookies = cookiesMiddleware();
+const withOther = myOtherMiddleware();
+
+// ...needs to be specified here:
+const handleEvent = withCookies<BaseArg & { url: URL }>(withOther(async ({ event, url, cookieStore }) => {
+  return new Response('Hello World!');
+}));
+```
+
+There's also no easy way to pre-combine multipe middlewares, without creating a new middleware itself
+— which requires a lot of type-specification and generics to get right.
+
+For these reasons, this remains a placeholder repo for now. Perhaps these quircks can be worked out and made more user-friendly in the future.
+
 ### KV Storage
 TBD
 
-### Router
-TBD
-
-### Sessions
-TBD
-
-### Content Negotiation
-TBD
-
-### CORS
-TBD
-
-### Authorization
-TBD
-
 ## Contributing
-TBD
+You can find Worker Tools on [GitHub][3] and [npm][2].
+
