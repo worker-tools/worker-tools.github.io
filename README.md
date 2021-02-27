@@ -19,7 +19,7 @@ buttons: >
 Worker Tools are a collection of TypeScript libraries for writing web servers in [Worker Environments][1]{:.external} such as Cloudflare Workers.
 
 [1]: https://workers.js.org/
-[2]: https://www.npmjs.com/org/werker
+[2]: https://www.npmjs.com/org/worker-tools
 [3]: https://github.com/worker-tools  
 
 ## Tools
