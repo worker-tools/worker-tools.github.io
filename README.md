@@ -6,9 +6,9 @@ logo: |
   </picture>
 description: >
   Tools for writing HTTP servers in [**Worker Environments**](https://workers.js.org/){:.external} such as [**Cloudflare Workers**](https://workers.cloudflare.com).
-buttons: >
-  [Get Started](#tools){:.btn.btn-primary}
-  [Contribute](#contributing){:.btn.btn-default style="font-weight:normal"}
+# buttons: >
+#   [Get Started](#tools){:.btn.btn-primary}
+#   [Contribute](#contributing){:.btn.btn-default style="font-weight:normal"}
 ---
 
 # Worker Tools
@@ -23,7 +23,7 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 [3]: https://github.com/worker-tools
 [4]: https://workers.cloudflare.com
 
-## Tools
+
 Workers Tools accomplish many of the same goals as a web framework, but they are provided as standalone libraries.
 
 All modules are written in TypeScript and provide full type declarations and source maps for the best developer experience (tested in VSCode).
@@ -38,7 +38,7 @@ import { html } from 'https://unpkg.com/@worker-tools/html?module';
 import { html } from 'https://cdn.skypack.dev/@worker-tools/html?dts';
 ```
 
-### [HTML Templating](https://github.com/worker-tools/html)
+## [HTML Templating](https://github.com/worker-tools/html)
 HTML templating and streaming response library.
 
 ```ts
@@ -51,7 +51,7 @@ self.addEventListener('fetch', event => event.respondWith(
 ));
 ```
 
-### [JSON Fetch](https://github.com/worker-tools/json-fetch)
+## [JSON Fetch](https://github.com/worker-tools/json-fetch)
 A drop-in replacements for `fetch`, `Request`, and `Response` with first class support for JSON objects.
 
 ```ts
@@ -60,7 +60,7 @@ const body = { json: 'data' };
 const response = await fetch(new JSONRequest('/api', { method: 'POST', body }));
 ```
 
-### [Response Creators](https://github.com/worker-tools/response-creators)
+## [Response Creators](https://github.com/worker-tools/response-creators)
 A collection of factory functions for Fetch API `Response`s with pre-filled status and status-text headers
 
 ```ts
@@ -69,7 +69,7 @@ self.addEventListener('fetch', event => event.respondWith(ok()))
 ```
 
 
-### [Request Cookie Store](https://github.com/worker-tools/request-cookie-store)
+## [Request Cookie Store](https://github.com/worker-tools/request-cookie-store)
 An implementation of the Cookie Store API for use within request handlers.
 
 ```ts
@@ -78,7 +78,7 @@ const example = new Request('/', { headers: { 'cookie': 'foo=bar; fizz=buzz' } }
 const cookieStore = new RequestCookieStore(example);
 ```
 
-### [Signed Cookie Store](https://github.com/worker-tools/signed-cookie-store)
+## [Signed Cookie Store](https://github.com/worker-tools/signed-cookie-store)
 An implementation of the Cookie Store API that transparently signs cookies via Web Cryptography API.
 
 ```ts
@@ -91,7 +91,7 @@ await sigCookieStore.set('foo', 'bar');
 It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
 
 
-### [Encrypted Cookie Store](https://github.com/worker-tools/encrypted-cookie-store)
+## [Encrypted Cookie Store](https://github.com/worker-tools/encrypted-cookie-store)
 An implementation of the Cookie Store API that transparently encrypted cookie values via Web Cryptography API.
 
 ```ts
@@ -104,7 +104,54 @@ await encCookieStore.set('foo', 'bar');
 It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
 
 
-### [Routing](https://github.com/worker-tools/router)
+## KV Storage
+Worker Tools provides a suite of packages to bring the (discontinued) KV Storage API to Cloudflare Workers and Deno.
+While work on [the specification](https://wicg.github.io/kv-storage/) itself has stopped, 
+it's still a good interface for asynchronous data access that feels native to JavaScript.
+
+```js
+import { StorageArea } from '@worker-tools/cloudflare-kv-storage';
+const storage = new StorageArea('foobar');
+await storage.set(['foo', 1], ['bar', 2]);
+await storage.get(['foo', 1]); // => ['bar', 2]
+```
+
+There are currently 2 packages with compatible APIs and different backing stores:
+* [Cloudflare Workers](https://github.com/worker-tools/cloudflare-kv-storage)
+* [Deno](https://github.com/worker-tools/deno-kv-storage)
+
+The Cloudflare implementation uses Cloudflare's Workers KV as a [backing store](https://developers.cloudflare.com/workers/runtime-apis/kv), 
+while the Deno implementation comes with built-in SQLite and Postgres adapters and the option to provide custom adapters.
+
+
+## [Deno Fetch Event Adapter](https://github.com/worker-tools/deno-fetch-event-adapter)
+A short utility to support Cloudflare Worker's `fetch` event in Deno.
+
+```js
+self.addEventListener('fetch', event => {
+  const ip = event.request.headers.get("x-forwarded-for");
+  event.respondWith(new Response(`Hello ${ip}`, { 
+    headers: [['content-type', 'text/plain']],
+  }));
+});
+```
+
+## [Parsed HTML Rewriter](https://github.com/worker-tools/parsed-html-rewriter)
+A DOM-based implementation of [Cloudflare Worker's `HTMLRewriter`](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter).
+
+Unlike the original, this implementation parses the entire DOM (provided by [`linkedom`](https://github.com/WebReflection/linkedom)),
+and runs selectors against this representation. This choice was made to quickly implement the functionality using existing tools.
+
+```js
+import '@worker-tools/parsed-html-rewriter/polyfill'
+await new HTMLRewriter()
+  .transform(new Response('<body></body>'))
+  .text();
+```
+
+Note that unlike other Worker Tools, using this module in Deno without a bundler like `esbuild` may [proof difficult](https://github.com/worker-tools/parsed-html-rewriter/issues/2#issuecomment-912896007) due to the extensive tree of dependencies.
+
+## [Routing](https://github.com/worker-tools/router)
 Worker Tools currently only provides a placeholder for a future routing solution.
 
 In the meantime, here are some alternatives:
@@ -117,13 +164,12 @@ In the meantime, here are some alternatives:
   A routing solution for Service Workers made by Google. I haven't tried to personally, but it shoud work in Cloudflare Workers as well.
 
 
-### [Middleware](https://github.com/worker-tools/middleware)
+## [Middleware](https://github.com/worker-tools/middleware)
 Worker Tools currently only provides a [placeholder](https://github.com/worker-tools/middleware) for a future middleware solution.
 
 
-### KV Storage
-TBD
+***
+{:style="margin:2rem 0"}
 
-## Contributing
 You can find Worker Tools on [GitHub][3] and [npm][2].
 
