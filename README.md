@@ -38,7 +38,8 @@ import { html } from 'https://unpkg.com/@worker-tools/html?module';
 import { html } from 'https://cdn.skypack.dev/@worker-tools/html?dts';
 ```
 
-## [HTML Templating](https://github.com/worker-tools/html)
+
+## HTML Templating
 HTML templating and streaming response library.
 
 ```ts
@@ -51,7 +52,10 @@ self.addEventListener('fetch', event => event.respondWith(
 ));
 ```
 
-## [JSON Fetch](https://github.com/worker-tools/json-fetch)
+[**View on GitHub**](https://github.com/worker-tools/html)
+
+
+## JSON Fetch
 A drop-in replacements for `fetch`, `Request`, and `Response` with first class support for JSON objects.
 
 ```ts
@@ -60,7 +64,10 @@ const body = { json: 'data' };
 const response = await fetch(new JSONRequest('/api', { method: 'POST', body }));
 ```
 
-## [Response Creators](https://github.com/worker-tools/response-creators)
+[**View on GitHub**](https://github.com/worker-tools/json-fetch)
+
+
+## Response Creators
 A collection of factory functions for Fetch API `Response`s with pre-filled status and status-text headers
 
 ```ts
@@ -68,8 +75,10 @@ import { ok } from '@worker-tools/response-creators'
 self.addEventListener('fetch', event => event.respondWith(ok()))
 ```
 
+[**View on GitHub**](https://github.com/worker-tools/response-creators)
 
-## [Request Cookie Store](https://github.com/worker-tools/request-cookie-store)
+
+## Request Cookie Store
 An implementation of the Cookie Store API for use within request handlers.
 
 ```ts
@@ -78,7 +87,10 @@ const example = new Request('/', { headers: { 'cookie': 'foo=bar; fizz=buzz' } }
 const cookieStore = new RequestCookieStore(example);
 ```
 
-## [Signed Cookie Store](https://github.com/worker-tools/signed-cookie-store)
+[**View on GitHub**](https://github.com/worker-tools/request-cookie-store)
+
+
+## Signed Cookie Store
 An implementation of the Cookie Store API that transparently signs cookies via Web Cryptography API.
 
 ```ts
@@ -90,8 +102,10 @@ await sigCookieStore.set('foo', 'bar');
 
 It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
 
+[**View on GitHub**](https://github.com/worker-tools/signed-cookie-store)
 
-## [Encrypted Cookie Store](https://github.com/worker-tools/encrypted-cookie-store)
+
+## Encrypted Cookie Store
 An implementation of the Cookie Store API that transparently encrypted cookie values via Web Cryptography API.
 
 ```ts
@@ -102,6 +116,8 @@ await encCookieStore.set('foo', 'bar');
 ```
 
 It accepts any Cookie Store implementation, but it's mostly meant to be used with [Request Cookie Store](#request-cookie-store).
+
+[**View on GitHub**](https://github.com/worker-tools/encrypted-cookie-store)
 
 
 ## KV Storage
@@ -124,7 +140,7 @@ The Cloudflare implementation uses Cloudflare's Workers KV as a [backing store](
 while the Deno implementation comes with built-in SQLite and Postgres adapters and the option to provide custom adapters.
 
 
-## [Deno Fetch Event Adapter](https://github.com/worker-tools/deno-fetch-event-adapter)
+## Deno Fetch Event Adapter
 A short utility to support Cloudflare Worker's `fetch` event in Deno.
 
 ```js
@@ -136,7 +152,10 @@ self.addEventListener('fetch', event => {
 });
 ```
 
-## [Parsed HTML Rewriter](https://github.com/worker-tools/parsed-html-rewriter)
+[**View on GitHub**](https://github.com/worker-tools/deno-fetch-event-adapter)
+
+
+## Parsed HTML Rewriter
 A DOM-based implementation of [Cloudflare Worker's `HTMLRewriter`](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter).
 
 Unlike the original, this implementation parses the entire DOM (provided by [`linkedom`](https://github.com/WebReflection/linkedom)),
@@ -151,7 +170,10 @@ await new HTMLRewriter()
 
 Note that unlike other Worker Tools, using this module in Deno without a bundler like `esbuild` may [proof difficult](https://github.com/worker-tools/parsed-html-rewriter/issues/2#issuecomment-912896007) due to the extensive tree of dependencies.
 
-## [Routing](https://github.com/worker-tools/router)
+[**View on GitHub**](https://github.com/worker-tools/parsed-html-rewriter)
+
+
+## Routing
 Worker Tools currently only provides a placeholder for a future routing solution.
 
 In the meantime, here are some alternatives:
@@ -164,12 +186,10 @@ In the meantime, here are some alternatives:
   A routing solution for Service Workers made by Google. I haven't tried to personally, but it shoud work in Cloudflare Workers as well.
 
 
-## [Middleware](https://github.com/worker-tools/middleware)
+## Middleware
 Worker Tools currently only provides a [placeholder](https://github.com/worker-tools/middleware) for a future middleware solution.
 
+[**View on GitHub**](https://github.com/worker-tools/middleware)
 
-***
-{:style="margin:2rem 0"}
 
-You can find Worker Tools on [GitHub][3] and [npm][2].
 
