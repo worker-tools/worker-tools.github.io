@@ -30,7 +30,7 @@ All modules are written in TypeScript and provide full type declarations and sou
 
 Most have no dependencies beyond what is provided by a [Worker Environment][1]. 
 For those that have dependencies, only such that provide ES module exports are used. 
-This makes it possible to use them without a bundler (browser, Deno) using either UNPKG's [`?module`](https://unpkg.com/#query-params)  parameter or [Skypack](https://skypack.dev). E.g.:
+This makes it possible to use them without a bundler using either UNPKG's [`?module`](https://unpkg.com/#query-params)  parameter or [Skypack](https://skypack.dev). E.g.:
 
 ```ts
 import { html } from 'https://unpkg.com/@worker-tools/html?module';
