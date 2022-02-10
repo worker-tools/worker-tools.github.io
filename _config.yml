@@ -6,8 +6,8 @@ lang:                  en
 title:                 Worker Tools
 tagline:               Tools for writing HTTP servers
 description:           >
-  Tools for writing HTTP servers in [Worker Environments](https://workers.js.org/) 
-  such as Cloudflare Workers.
+  Worker Tools are a collection of TypeScript libraries for writing web servers in Worker Environments such as Cloudflare Workers.
+  Workers Tools accomplish many of the same goals as a web framework, but they are provided as standalone libraries.
 
 clap_button:           false
 
