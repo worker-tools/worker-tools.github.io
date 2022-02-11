@@ -33,7 +33,7 @@ author:
 #   - title:             CHANGELOG
 #     url:              /CHANGELOG/
 
-copyright:             © 2021. All rights reserved.
+copyright:             © 2022 Florian Klampfer <https://qwtel.com/>
 
 permalink:             /:categories/:year-:month-:day-:title/
 
@@ -59,7 +59,8 @@ accent_image:
   background:          'linear-gradient(to bottom, #e9bc4b, #f38020)'
   overlay:             false
 accent_color:          rgb(243,128,32)
-theme_color:           rgb(243,128,32)
+# theme_color:           rgb(243,128,32)
+theme_color:           '#ee9b33'
 
 defaults:
   - scope:
