@@ -1,0 +1,18 @@
+html {
+  --dark-mode-body-bg: hsl(227, 10%, 12%)!important;
+  --dark-mode-border-color: hsl(227, 10%, 24%)!important; 
+}
+
+@media (prefers-color-scheme:dark) {
+  .sidebar {
+    filter: brightness(0.75);
+  }
+}
+
+.dark-mode .sidebar {
+  filter: brightness(0.75);
+}
+
+.light-mode .sidebar {
+  filter: none;
+}
