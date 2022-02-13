@@ -12,7 +12,7 @@
         </g>
     </g>
     <defs>
-        <radialGradient id="_Radial1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(76.1276,-24.2271,24.2271,76.1276,158.469,142.643)"><stop offset="0" style="stop-color:rgb(243,128,32);stop-opacity:1"/><stop offset="0.52" style="stop-color:rgb(241,142,42);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(233,188,75);stop-opacity:1"/></radialGradient>
-        <radialGradient id="_Radial2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(27.375,-8.71192,8.71192,27.375,130.75,129.03)"><stop offset="0" style="stop-color:rgb(243,128,32);stop-opacity:1"/><stop offset="0.52" style="stop-color:rgb(241,142,42);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(233,188,75);stop-opacity:1"/></radialGradient>
+        <radialGradient id="_Radial1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(57.972,-55.9743,55.9743,57.972,158.864,147.619)"><stop offset="0" style="stop-color:rgb(233,188,75);stop-opacity:1"/><stop offset="0.45" style="stop-color:rgb(236,170,62);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(243,128,32);stop-opacity:1"/></radialGradient>
+        <radialGradient id="_Radial2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(20.1025,-20.1025,20.1025,20.1025,131.059,130.604)"><stop offset="0" style="stop-color:rgb(233,188,75);stop-opacity:1"/><stop offset="0.52" style="stop-color:rgb(235,174,65);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(243,128,32);stop-opacity:1"/></radialGradient>
     </defs>
 </svg>
