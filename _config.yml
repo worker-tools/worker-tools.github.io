@@ -11,9 +11,9 @@ description:           >
 
 clap_button:           false
 
-logo:                  assets/img/logo_s.svg
-favicon:               favicon.ico
-apple_touch_icon:      assets/img/logo.svg
+logo:                  /assets/img/logo_s.svg
+favicon:               /favicon.ico
+apple_touch_icon:      /assets/img/logo.svg
 
 author:
   name:                Florian Klampfer
@@ -22,18 +22,18 @@ author:
     github:            https://github.com/worker-tools
     npm:               https://www.npmjs.com/org/worker-tools
 
-# menu:
-#   - title:             LICENSE
-#     url:              /LICENSE/
-#   - title:             CHANGELOG
-#     url:              /CHANGELOG/
+menu:
+  - title:             Guides
+    url:              /guides/
+  # - title:             CHANGELOG
+  #   url:              /CHANGELOG/
 # legal:
 #   - title:             LICENSE
 #     url:              /LICENSE/
 #   - title:             CHANGELOG
 #     url:              /CHANGELOG/
 
-copyright:             © 2022 Florian Klampfer <https://qwtel.com/>
+copyright:             © 2022 Florian Klampfer [qwtel.com](https://qwtel.com/)
 
 permalink:             /:categories/:year-:month-:day-:title/
 
@@ -46,6 +46,9 @@ collections:
     output:            true
   projects:
     permalink:         /projects/:path/
+    output:            true
+  tools:
+    permalink:         /:path/
     output:            true
 
 theme:                 jekyll-theme-hydejack
