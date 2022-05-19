@@ -3,14 +3,6 @@
 layout: page
 description: >
   An implementation of the StorageArea (1,2,3) interface using Cloudflare Worker's KV storage as a backing store.
-links:
-  github: https://github.com/worker-tools/cloudflare-kv-storage
-  ghuc: https://ghuc.cc/worker-tools/cloudflare-kv-storage/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/cloudflare-kv-storage
-  unpkg: https://unpkg.com/browse/@worker-tools/cloudflare-kv-storage/
-  deno: https://deno.land/x/cloudflare_kv_storage
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/cloudflare-kv-storage/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/cloudflare_kv_storage/index.ts
 ---
 
 # Cloudflare Storage Area
@@ -81,11 +73,11 @@ it's much better to use Cloudflare's KV directly.
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/cloudflare-kv-storage)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/cloudflare-kv-storage/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/cloudflare-kv-storage) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/cloudflare-kv-storage/)
+· [__deno.land__](https://deno.land/x/cloudflare_kv_storage)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/cloudflare-kv-storage/master/index.ts)
 {:.faded}
 <br/>

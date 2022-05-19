@@ -2,6 +2,6 @@
 layout: grid
 title: Guides
 description: >
-  Guides and How-Tos for working with Worker Environments and Worker Tools.
+  Guides and How-Tos for working with Worker Runtimes and Worker Tools.
 grouped: false
 ---

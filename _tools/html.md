@@ -2,20 +2,12 @@
 # THIS FILE WAS COPIED FROM worker-tools/html/README.md! DO NOT MODIFY DIRECTLY!
 layout: page
 description: >
-  HTML templating and streaming response library for Service Worker-like environments such as Cloudflare Workers.
-links:
-  github: https://github.com/worker-tools/html
-  ghuc: https://ghuc.cc/worker-tools/html/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/html
-  unpkg: https://unpkg.com/browse/@worker-tools/html/
-  deno: https://deno.land/x/workers_html
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/workers_html/index.ts
+  HTML templating and streaming response library for Service Worker-like runtimes such as Cloudflare Workers.
 ---
 
 # Worker HTML
 
-[HTML templating](#html-templating) and [streaming response](#streaming-responses) library for Service Worker-like environments such as Cloudflare Workers.
+[HTML templating](#html-templating) and [streaming response](#streaming-responses) library for Service Worker-like runtimes such as Cloudflare Workers.
 
 <noscript></noscript>
 * Table of Contents
@@ -95,7 +87,7 @@ function handleRequest(event: FetchEvent) {
 self.addEventListener('fetch', ev => ev.respondWith(handleRequest(ev)));
 ```
 
-Note that this works regardless of worker environment: Cloudflare Workers, Service Workers in the browser, and hopefully other [worker environments](https://workers.js.org) that have yet to be implemented.
+Note that this works regardless of worker environment: Cloudflare Workers, Service Workers in the browser, and hopefully other [worker runtimes](https://workers.js.org) that have yet to be implemented.
 
 ### Tooling
 Since the use of tagged string literals for HTML is not new (see hyperHTML, lit-html), there exists tooling for syntax highlighting, such as [`lit-html` in VSCode](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html).
@@ -167,11 +159,11 @@ Finally, you can read [The Joys and Perils of Writing Plain Old Web Apps](https:
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/html)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/html/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/html) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/html/)
+· [__deno.land__](https://deno.land/x/workers_html)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html/master/index.ts)
 {:.faded}
 <br/>

@@ -3,14 +3,6 @@
 layout: page
 description: >
   A Location polyfill for Cloudflare Workers.
-links:
-  github: https://github.com/worker-tools/location-polyfill
-  ghuc: https://ghuc.cc/worker-tools/location-polyfill/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/location-polyfill
-  unpkg: https://unpkg.com/browse/@worker-tools/location-polyfill/
-  deno: https://deno.land/x/location_polyfill
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/location-polyfill/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/location_polyfill/index.ts
 ---
 
 # Location Polyfill
@@ -47,11 +39,11 @@ In CF Workers, add the following to your `wrangler.toml` to define this variable
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/location-polyfill)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/location-polyfill/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/location-polyfill) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/location-polyfill/)
+· [__deno.land__](https://deno.land/x/location_polyfill)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/location-polyfill/master/index.ts)
 {:.faded}
 <br/>

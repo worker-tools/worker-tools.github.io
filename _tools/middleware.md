@@ -2,20 +2,12 @@
 # THIS FILE WAS COPIED FROM worker-tools/middleware/README.md! DO NOT MODIFY DIRECTLY!
 layout: page
 description: >
-  A suite of standalone HTTP server middlewares for Worker Environments.
-links:
-  github: https://github.com/worker-tools/middleware
-  ghuc: https://ghuc.cc/worker-tools/middleware/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/middleware
-  unpkg: https://unpkg.com/browse/@worker-tools/middleware/
-  deno: https://deno.land/x/workers_middleware
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/middleware/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/workers_middleware/index.ts
+  A suite of standalone HTTP server middlewares for Worker Runtimes.
 ---
 
 # Worker Middleware
 
-A suite of standalone HTTP server middlewares for Worker Environments.
+A suite of standalone HTTP server middlewares for Worker Runtimes.
 
 <noscript></noscript>
 * Table of Contents
@@ -23,7 +15,7 @@ A suite of standalone HTTP server middlewares for Worker Environments.
 
 ***
 
-___Work In Progress___
+__Work In Progress__
 
 ***
 
@@ -75,7 +67,7 @@ router.get('/', combine(
 The session object is persisted at the end of the request.  
 
 ### Body Parser
-Because Worker Environments already provide helpers like `.json()` and `.formData()` in the Request type, the need for a body parser is less pronounced. The value of Middleware's body parser mainly comes from content negotiation:
+Because Worker Runtimes already provide helpers like `.json()` and `.formData()` in the Request type, the need for a body parser is less pronounced. The value of Middleware's body parser mainly comes from content negotiation:
 
 ```js
 router.any('/form', bodyParser(), (request, { accepted, ...ctx }) => {
@@ -177,11 +169,11 @@ export default withMiddleware(
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/middleware)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/middleware/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/middleware) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/middleware/)
+· [__deno.land__](https://deno.land/x/workers_middleware)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/middleware/master/index.ts)
 {:.faded}
 <br/>

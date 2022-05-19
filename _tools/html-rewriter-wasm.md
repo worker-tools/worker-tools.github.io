@@ -3,14 +3,6 @@
 layout: page
 description: >
   An implementation of HTMLRewriter using a WebAssembly version of lol-html. This was primarily written for 🔥 Miniflare, but may be useful for other projects too. Many thanks to @inikulin for their work on lol-html's JavaScript API which this package's Rust code is based on.
-links:
-  github: https://github.com/worker-tools/html-rewriter-wasm
-  ghuc: https://ghuc.cc/worker-tools/html-rewriter-wasm/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/html-rewriter-wasm
-  unpkg: https://unpkg.com/browse/@worker-tools/html-rewriter-wasm/
-  deno: https://deno.land/x/html_rewriter_wasm
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter-wasm/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/html_rewriter_wasm/index.ts
 ---
 
 # `html-rewriter-wasm`
@@ -206,11 +198,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/html-rewriter-wasm)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/html-rewriter-wasm/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/html-rewriter-wasm) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/html-rewriter-wasm/)
+· [__deno.land__](https://deno.land/x/html_rewriter_wasm)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter-wasm/master/index.ts)
 {:.faded}
 <br/>

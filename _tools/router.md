@@ -2,19 +2,11 @@
 # THIS FILE WAS COPIED FROM worker-tools/router/README.md! DO NOT MODIFY DIRECTLY!
 layout: page
 description: >
-  A router for Worker Environments such and Cloudflare Workers or Service Workers.
-links:
-  github: https://github.com/worker-tools/router
-  ghuc: https://ghuc.cc/worker-tools/router/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/router
-  unpkg: https://unpkg.com/browse/@worker-tools/router/
-  deno: https://deno.land/x/workers_router
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/router/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/workers_router/index.ts
+  A router for Worker Runtimes such as Cloudflare Workers and Service Workers.
 ---
 
 # Worker Router
-A router for [Worker Environments](https://workers.js.org) such and Cloudflare Workers or Service Workers.
+A router for [Worker Runtimes](https://workers.js.org) such as Cloudflare Workers and Service Workers.
 
 ***
 
@@ -22,11 +14,11 @@ A router for [Worker Environments](https://workers.js.org) such and Cloudflare W
 * Table of Contents
 {:toc .large-only}
 
-___Work In Progress___
+__Work In Progress__
 
 ***
 
-This router is inspired by previous work such as `tiny-request-router` and `itty-router`, but it
+This router is inspired by previous work, specifically `tiny-request-router` and `itty-router`, but it
 improves on them by providing better support for middleware, type inference, nested routing, and broader URL matching for use in service workers.
 
 ## 🆓 Type Inference
@@ -34,14 +26,14 @@ The goal of Worker Router is to *infer types based on usage* so that **no explic
 This allows even JavaScript users to benefit from inline documentation and API discoverability. For example,
 
 ```js
-const router = new WorkersRouter(basics())
-  .get('/about', (req, { userAgent }) => ok())
-  .get('/login', unsignedCookies(), (req, { userAgent, cookies }) => ok())
+const router = new WorkersRouter()
+  .get('/about', basics(), (req, { userAgent }) => ok())
+  .get('/login', unsignedCookies(), (req, { cookies }) => ok())
 ```
 
 In this example your editor can infer the types and documentation for
-  - `userAgent`, provided by the `basics` middleware for the entire router
-  - `cookies`, provided by the `unsignedCookies` middleware for this route only
+  - `userAgent`, provided by the `basics` middleware 
+  - `cookies`, provided by the `unsignedCookies` middleware 
 
 
 ## 🔋 Functional Middleware
@@ -77,7 +69,6 @@ const router = new WorkersRouter()
   .use('/item*', itemRouter)
 ```
 
-TODO: Provide parent matches to child router...
 
 ## ⚙️ Ready for Service... Worker
 Internally, this router uses [`URLPattern`](https://web.dev/urlpattern/) for routing, which allows it match URLs in the broadest sense. 
@@ -100,13 +91,13 @@ Worker Router has first class support for error handling. Its main purpose is to
 const router = new WorkersRouter()
   .get('/', () => ok('Main Page'))
   .get('/about', () => { throw Error('bang') })
-  .recover('*', (req, { response }) => 
-    new Response(`Something went wrong`, response)
+  .recover('*', (req, { error, response }) => 
+    new Response(`Something went wrong: ${error.message}`, response)
   );
 ```
 
 ## ✅ Works with Workers
-Worker Router comes with out of the box support for a variety of Worker Environments:
+Worker Router comes with out of the box support for a variety of Worker Runtimes:
 
 To use it in an environment that provides a global `fetch` event, use
 
@@ -138,11 +129,11 @@ middleware is another function that *adds* properties to the context, which is f
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/router)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/router/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/router) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/router/)
+· [__deno.land__](https://deno.land/x/workers_router)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/router/master/index.ts)
 {:.faded}
 <br/>

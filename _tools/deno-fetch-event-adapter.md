@@ -3,14 +3,6 @@
 layout: page
 description: >
   Dispatches global fetch events using Deno's native HTTP server.
-links:
-  github: https://github.com/worker-tools/deno-fetch-event-adapter
-  ghuc: https://ghuc.cc/worker-tools/deno-fetch-event-adapter/mod.ts
-  npm: https://www.npmjs.com/package/@worker-tools/deno-fetch-event-adapter
-  unpkg: https://unpkg.com/browse/@worker-tools/deno-fetch-event-adapter/
-  deno: https://deno.land/x/fetch_event_adapter
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-fetch-event-adapter/master/mod.ts
-  # docs: https://doc.deno.land/https://deno.land/x/fetch_event_adapter/mod.ts
 ---
 
 # Deno Fetch Event Adapter
@@ -70,11 +62,11 @@ self.addEventListener('error', event => {
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/deno-fetch-event-adapter)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/deno-fetch-event-adapter/mod.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/deno-fetch-event-adapter) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/deno-fetch-event-adapter/)
+· [__deno.land__](https://deno.land/x/fetch_event_adapter)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-fetch-event-adapter/master/mod.ts)
 {:.faded}
 <br/>

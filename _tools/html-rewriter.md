@@ -3,14 +3,6 @@
 layout: page
 description: >
   WASM-based implementation of Cloudflare's HTML Rewriter for use in Deno, browsers, etc.
-links:
-  github: https://github.com/worker-tools/html-rewriter
-  ghuc: https://ghuc.cc/worker-tools/html-rewriter/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/html-rewriter
-  unpkg: https://unpkg.com/browse/@worker-tools/html-rewriter/
-  deno: https://deno.land/x/html_rewriter
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/html_rewriter/index.ts
 ---
 
 # HTML Rewriter
@@ -92,11 +84,11 @@ This will build a custom version of `wasm-pack` first, then use it to compile `l
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/html-rewriter)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/html-rewriter/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/html-rewriter) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/html-rewriter/)
+· [__deno.land__](https://deno.land/x/html_rewriter)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts)
 {:.faded}
 <br/>

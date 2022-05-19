@@ -3,14 +3,6 @@
 layout: page
 description: >
   An implementation of the Cookie Store API for request handlers.
-links:
-  github: https://github.com/worker-tools/request-cookie-store
-  ghuc: https://ghuc.cc/worker-tools/request-cookie-store/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/request-cookie-store
-  unpkg: https://unpkg.com/browse/@worker-tools/request-cookie-store/
-  deno: https://deno.land/x/request_cookie_store
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/request-cookie-store/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/request_cookie_store/index.ts
 ---
 
 # Request Cookie Store
@@ -23,7 +15,7 @@ keeps a record of changes that can be exported as a list of `Set-Cookie` headers
 * Table of Contents
 {:toc .large-only}
 
-It is intended as a cookie middleware for Cloudflare Workers or other [Worker Environments][wks], but perhaps there are other uses as well.
+It is intended as a cookie middleware for Cloudflare Workers or other [Worker Runtimes][wks], but perhaps there are other uses as well.
 It is best combined with [**Signed Cookie Store**](../signed-cookie-store) or [**Encrypted Cookie Store**](../encrypted-cookie-store).
 
 ## Recipes 
@@ -70,7 +62,7 @@ await cookieStore.set('fizz', 'bar');
 event.respondWith(new Response(null, cookieStore));
 ```
 
-Will produce the following HTTP headers in Worker Environments that support multiple `Set-Cookie` headers:
+Will produce the following HTTP headers in Worker Runtimes that support multiple `Set-Cookie` headers:
 
 ```http
 HTTP/1.1 200 OK
@@ -80,7 +72,7 @@ set-cookie: fizz=bar
 ```
 
 <!-- Note that [due to the weirdness][1] of the `Headers` class, inspecting the response in JS will not produce the intended result (`set-cookie` headers will appear concatenated). 
-However, Worker Environments such as Cloudflare Workers will put multiple headers on the network when provided a "[header list](https://fetch.spec.whatwg.org/#concept-header-list)", i.e. an array of tuples. -->
+However, Worker Runtimes such as Cloudflare Workers will put multiple headers on the network when provided a "[header list](https://fetch.spec.whatwg.org/#concept-header-list)", i.e. an array of tuples. -->
 
 
 ### Combine With Other Headers
@@ -99,7 +91,7 @@ const response = new Response('{}', {
 [1]: https://fetch.spec.whatwg.org/#headers-class
 
 ## Disclaimers
-_This is not a polyfill! It is intended as a cookie middleware for Cloudflare Workers or other [Worker Environments][wks]!_
+_This is not a polyfill! It is intended as a cookie middleware for Cloudflare Workers or other [Worker Runtimes][wks]!_
 
 [Due to the weirdness][1] of the Fetch API `Headers` class w.r.t `Set-Cookie` (or rather, the lack of special treatment), it is not likely to work in a Service Worker.
 
@@ -109,11 +101,11 @@ _This is not a polyfill! It is intended as a cookie middleware for Cloudflare Wo
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/request-cookie-store)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/request-cookie-store/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/request-cookie-store) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/request-cookie-store/)
+· [__deno.land__](https://deno.land/x/request_cookie_store)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/request-cookie-store/master/index.ts)
 {:.faded}
 <br/>

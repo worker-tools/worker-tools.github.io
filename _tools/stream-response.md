@@ -3,14 +3,6 @@
 layout: page
 description: >
   Fetch API Response objects made from async generators. Build streaming HTML responses or SSE with JS sugar.
-links:
-  github: https://github.com/worker-tools/stream-response
-  ghuc: https://ghuc.cc/worker-tools/stream-response/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/stream-response
-  unpkg: https://unpkg.com/browse/@worker-tools/stream-response/
-  deno: https://deno.land/x/stream_response
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/stream-response/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/stream_response/index.ts
 ---
 
 # Stream Response
@@ -56,11 +48,11 @@ router.get('/sse', contentType(['text/event-stream']), (req, { type }) => {
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/stream-response)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/stream-response/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/stream-response) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/stream-response/)
+· [__deno.land__](https://deno.land/x/stream_response)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/stream-response/master/index.ts)
 {:.faded}
 <br/>

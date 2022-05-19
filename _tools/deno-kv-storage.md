@@ -3,14 +3,6 @@
 layout: page
 description: >
   An implementation of the StorageArea (1,2,3) interface for Deno with an extensible system for supporting various database backends.
-links:
-  github: https://github.com/worker-tools/deno-kv-storage
-  ghuc: https://ghuc.cc/worker-tools/deno-kv-storage/mod.ts
-  npm: https://www.npmjs.com/package/@worker-tools/deno-kv-storage
-  unpkg: https://unpkg.com/browse/@worker-tools/deno-kv-storage/
-  deno: https://deno.land/x/kv_storage
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-kv-storage/master/mod.ts
-  # docs: https://doc.deno.land/https://deno.land/x/kv_storage/mod.ts
 ---
 
 # Deno Storage Area
@@ -91,11 +83,11 @@ it's better to use a database implementation with proper support for binary data
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/deno-kv-storage)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/deno-kv-storage/mod.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/deno-kv-storage) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/deno-kv-storage/)
+· [__deno.land__](https://deno.land/x/kv_storage)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-kv-storage/master/mod.ts)
 {:.faded}
 <br/>

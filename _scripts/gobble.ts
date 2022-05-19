@@ -17,7 +17,8 @@ const nl = '\n\n'
 
 for await (const dir of Deno.readDir('../packages')) {
   if (dir.isDirectory && !dir.name.startsWith('.')) {
-    const README = (await Deno.readTextFile(`../packages/${dir.name}/README.md`)).trim()
+    const README = (await Deno.readTextFile(`../packages/${dir.name}/README.md`).catch(() => '')).trim()
+    if (!README) continue;
     const [, description] = getTitleDescription(README)
 
     const [heading, sub, ...lines] = README
@@ -31,20 +32,22 @@ for await (const dir of Deno.readDir('../packages')) {
         : dir.name.replaceAll('-', '_')
     const indexTS = dir.name.startsWith('deno-') ? 'mod.ts' : 'index.ts'
 
+    const links = {
+      github: `https://github.com/worker-tools/${dir.name}`,
+      ghuc: `https://ghuc.cc/worker-tools/${dir.name}/${indexTS}`,
+      npm: `https://www.npmjs.com/package/@worker-tools/${dir.name}`,
+      unpkg: `https://unpkg.com/browse/@worker-tools/${dir.name}/`,
+      deno: `https://deno.land/x/${denoName}`,
+      docs: `https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/${dir.name}/master/${indexTS}`,
+      // docs: `https://doc.deno.land/https://deno.land/x/${denoName}/${indexTS}`,
+    }
+
     const frontMatter = dedent`
       ---
       # THIS FILE WAS COPIED FROM worker-tools/${dir.name}/README.md! DO NOT MODIFY DIRECTLY!
       layout: page
       description: >
         ${description}
-      links:
-        github: https://github.com/worker-tools/${dir.name}
-        ghuc: https://ghuc.cc/worker-tools/${dir.name}/${indexTS}
-        npm: https://www.npmjs.com/package/@worker-tools/${dir.name}
-        unpkg: https://unpkg.com/browse/@worker-tools/${dir.name}/
-        deno: https://deno.land/x/${denoName}
-        docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/${dir.name}/master/${indexTS}
-        # docs: https://doc.deno.land/https://deno.land/x/${denoName}/${indexTS}
       ---
     `.trim()
 
@@ -60,12 +63,12 @@ for await (const dir of Deno.readDir('../packages')) {
       {:style="margin: 2rem 0"}
 
       Links:
-      [__GitHub__]({{ page.links.github }})
-      / [ghuc.cc]({{ page.links.ghuc }})
-      · [__NPM__]({{ page.links.npm }}) 
-      / [Browse Package]({{ page.links.unpkg }})
-      · [__deno.land__]({{ page.links.deno }})
-      / [Docs]({{ page.links.docs }})
+      [__GitHub__](${links.github})
+      / [ghuc.cc](${links.ghuc})
+      · [__NPM__](${links.npm}) 
+      / [Browse Package](${links.unpkg})
+      · [__deno.land__](${links.deno})
+      / [Docs](${links.docs})
       {:.faded}
       <br/>
     `;

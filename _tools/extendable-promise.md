@@ -3,14 +3,6 @@
 layout: page
 description: >
   A promise that can be delayed (extended) via repeated calls to waitUntil.
-links:
-  github: https://github.com/worker-tools/extendable-promise
-  ghuc: https://ghuc.cc/worker-tools/extendable-promise/index.ts
-  npm: https://www.npmjs.com/package/@worker-tools/extendable-promise
-  unpkg: https://unpkg.com/browse/@worker-tools/extendable-promise/
-  deno: https://deno.land/x/extendable_promise
-  docs: https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/extendable-promise/master/index.ts
-  # docs: https://doc.deno.land/https://deno.land/x/extendable_promise/index.ts
 ---
 
 # Extendable Promise
@@ -55,11 +47,11 @@ Initializing it with a synchronous value or a settled promise immediately settle
 {:style="margin: 2rem 0"}
 
 Links:
-[__GitHub__]({{ page.links.github }})
-/ [ghuc.cc]({{ page.links.ghuc }})
-· [__NPM__]({{ page.links.npm }}) 
-/ [Browse Package]({{ page.links.unpkg }})
-· [__deno.land__]({{ page.links.deno }})
-/ [Docs]({{ page.links.docs }})
+[__GitHub__](https://github.com/worker-tools/extendable-promise)
+/ [ghuc.cc](https://ghuc.cc/worker-tools/extendable-promise/index.ts)
+· [__NPM__](https://www.npmjs.com/package/@worker-tools/extendable-promise) 
+/ [Browse Package](https://unpkg.com/browse/@worker-tools/extendable-promise/)
+· [__deno.land__](https://deno.land/x/extendable_promise)
+/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/extendable-promise/master/index.ts)
 {:.faded}
 <br/>
