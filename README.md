@@ -23,7 +23,7 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 - 🧭 [__Worker Router__][router]{:.flip-title} --- Complete routing solution that works across CF Workers, Deno and Service Workers
 - 🔋 [__Worker Middleware__][middleware]{:.flip-title} --- A suite of standalone HTTP server-side middleware with TypeScript support
 - 📄 [__Worker HTML__][html]{:.flip-title} --- HTML templating and streaming response library
-- 📦 __Storage Area__ --- Storage abstractions for [Cloudflare's KV][cloudflare-kv-storage] and [Deno][deno-kv-storage]
+- 📦 [__Storage Area__][kv-storage] --- Storage abstractions for [Cloudflare's KV][cloudflare-kv-storage] and [Deno][deno-kv-storage]
 - 🆗 [__Response Creators__][response-creators]{:.flip-title} --- Factory functions for responses with pre-filled status and status text
 - 🎏 [__Stream Response__][stream-response]{:.flip-title} --- Use async generators to build streaming responses for SSE, etc...
 - 🥏 [__JSON Fetch__][json-fetch]{:.flip-title} --- Drop-in replacements for Fetch API classes with first class support for JSON.
@@ -47,8 +47,10 @@ Worker Tools also maintains a number of (web-) services:
 [router]: ./router
 [middleware]: ./middleware
 [html]: ./html
+[kv-storage]: ./kv-storage
 [cloudflare-kv-storage]: ./cloudflare-kv-storage
 [deno-kv-storage]: ./deno-kv-storage
+[kv-storage-polyfill]: ./kv-storage-polyfill
 [response-creators]: ./response-creators
 [stream-response]: ./stream-response
 [json-fetch]: ./json-fetch

@@ -14,7 +14,7 @@ __Shed__ is the entire collection of [__Worker Tools__](https://workers.tools) u
 * Table of Contents
 {:toc .large-only}
 
-___Work In Progress___
+__Work In Progress__
 
 ***
 
