@@ -22,7 +22,7 @@ __Work In Progress__
 - 🧭 [__Worker Router__][router] --- Complete routing solution that works across CF Workers, Deno and Service Workers
 - 🔋 [__Worker Middleware__][middleware] --- A suite of standalone HTTP server-side middleware with TypeScript support
 - 📄 [__Worker HTML__][html] --- HTML templating and streaming response library
-- 📦 __Storage Area__ --- Storage abstractions for [Cloudflare's KV][cloudflare-kv-storage] and [Deno][deno-kv-storage]
+- 📦 [__Storage Area__][kv-storage] --- Storage abstractions for [Cloudflare's KV][cloudflare-kv-storage] and [Deno][deno-kv-storage]
 - 🆗 [__Response Creators__][response-creators] --- Factory functions for responses with pre-filled status and status text
 - 🎏 [__Stream Response__][stream-response] --- Use async generators to build streaming responses for SSE, etc...
 - 🥏 [__JSON Fetch__][json-fetch] --- Drop-in replacements for Fetch API classes with first class support for JSON.
@@ -41,6 +41,7 @@ Worker Tools also includes a number of polyfills that help bridge the gap betwee
 [router]: https://workers.tools/router
 [middleware]: https://workers.tools/middleware
 [html]: https://workers.tools/html
+[kv-storage]: https://workers.tools/kv-storage
 [cloudflare-kv-storage]: https://workers.tools/cloudflare-kv-storage
 [deno-kv-storage]: https://workers.tools/deno-kv-storage
 [response-creators]: https://workers.tools/response-creators
