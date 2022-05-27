@@ -97,8 +97,6 @@ _This is not a polyfill! It is intended as a cookie middleware for Cloudflare Wo
 
 [wks]: https://workers.js.org/
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

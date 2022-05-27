@@ -35,8 +35,6 @@ In CF Workers, add the following to your `wrangler.toml` to define this variable
   WORKER_LOCATION = 'http://localhost:8787'
 ```
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

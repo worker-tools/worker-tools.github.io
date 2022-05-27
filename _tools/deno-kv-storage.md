@@ -79,8 +79,6 @@ Beyond the cross-worker-env aspects of using StorageArea, it aso provides a numb
 Note that efficiency is not a goal. Specifically, if you have sizable `ArrayBuffer`s,
 it's better to use a database implementation with proper support for binary data.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

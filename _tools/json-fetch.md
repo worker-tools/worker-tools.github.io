@@ -59,8 +59,6 @@ const response = await fetch(new JSONRequest('/some', {
 This will send the body as form-data/multipart with correct content type header, as in the original Fetch API. 
 Only difference is that the `Accept` header will be set to indicate preference for `application/json`, i.e. anticipating a JSON response from the server.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

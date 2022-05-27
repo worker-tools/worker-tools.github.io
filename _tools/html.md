@@ -155,8 +155,6 @@ You can also see the [Worker News source code](../worker-news) for an example of
 
 Finally, you can read [The Joys and Perils of Writing Plain Old Web Apps](https://qwtel.com/posts/software/the-joys-and-perils-of-writing-plain-old-web-apps/) for a personal account of building web apps in a Web 2.0 way.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

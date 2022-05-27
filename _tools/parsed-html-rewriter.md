@@ -69,8 +69,6 @@ await new HTMLRewriter()
 - Because this version isn't based on streaming data, the order in which handlers are called can differ. Some measure have been taken to simulate the order, but differences may occur.
 - Texts never arrive in chunks. There is always just one chunk, followed by an empty one with `lastInTextNode` set to `true`.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

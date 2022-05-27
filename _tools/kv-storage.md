@@ -70,8 +70,6 @@ This will instruct `esbuild` to replace the generic `kv-storage` module with the
 [2]: https://css-tricks.com/kv-storage/
 [3]: https://github.com/WICG/kv-storage
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

@@ -44,8 +44,6 @@ router.get('/sse', contentType(['text/event-stream']), (req, { type }) => {
 
 *[SSE]: Server Sent Events
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

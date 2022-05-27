@@ -13,8 +13,6 @@ Typed wrapper around <https://github.com/GoogleChromeLabs/kv-storage-polyfill>
 * Table of Contents
 {:toc .large-only}
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

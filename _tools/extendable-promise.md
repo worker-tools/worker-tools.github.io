@@ -43,8 +43,6 @@ If an extendable promise is created without supplying an initial promise, it is 
 
 Initializing it with a synchronous value or a settled promise immediately settles the extendable promise with that value and all calls to `waitUntil` are no-ops.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

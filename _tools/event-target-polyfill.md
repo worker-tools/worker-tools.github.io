@@ -30,8 +30,6 @@ et.dispatchEvent(new Event('test'));
 
 This library has no dependencies. Even development dependencies. To test just run `npm test`. It runs a script, and if it finishes without error, the tests pass.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

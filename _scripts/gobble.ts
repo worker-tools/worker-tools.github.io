@@ -35,7 +35,7 @@ for await (const dir of Deno.readDir('../packages')) {
 
     const [heading, sub, ...lines] = README
       .replaceAll(/https?:\/\/github.com\/worker-tools\/?/g, '../')
-      .replace(/--------(?:.(?!--------))+$/s, '') // remove the footer
+      .replace(/\n+<br\/>\n+--------.+$/s, '') // remove the footer
       .split(nl)
 
     const denoName = ['router', 'middleware', 'html'].includes(dir.name)

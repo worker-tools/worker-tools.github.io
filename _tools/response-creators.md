@@ -49,8 +49,6 @@ event.respondWith(
 
 Due to signature of the `Response` constructor, the opposite order (`badRequest(new JSONResponse({ error: '...' }))`) does not work!
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

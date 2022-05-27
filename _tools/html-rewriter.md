@@ -80,8 +80,6 @@ make dist
 
 This will build a custom version of `wasm-pack` first, then use it to compile `lol-html` to WASM. Please see the submodules for details on why this is necessary.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

@@ -69,8 +69,6 @@ Beyond the cross-worker-env aspects of using StorageArea, CloudflareStorageArea 
 Note that efficiency is not a goal. Specifically, if you have sizable `ArrayBuffer`s,
 it's much better to use Cloudflare's KV directly.
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

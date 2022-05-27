@@ -120,8 +120,6 @@ serve(router.serveCallback)
 At it's core, Worker Router is a function of `(req: Request, ctx: Context) => Promise<Response>`. In this model, 
 middleware is another function that *adds* properties to the context, which is fully tracked by the type system. Conversely, middleware that is not applied is also absent and not polluting the context object. -->
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

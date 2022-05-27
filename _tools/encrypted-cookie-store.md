@@ -16,8 +16,6 @@ but written in a platform-agnostic way.
 * Table of Contents
 {:toc .large-only}
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

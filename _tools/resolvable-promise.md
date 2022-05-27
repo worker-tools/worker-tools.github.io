@@ -19,8 +19,6 @@ promise.then(x => console.log('Resolved!', x))
 promise.resolve({ foo: 'bar' })
 ```
 
-
-
 ***
 {:style="margin: 2rem 0"}
 

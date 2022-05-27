@@ -58,8 +58,6 @@ self.addEventListener('error', event => {
 });
 ```
 
-
-
 ***
 {:style="margin: 2rem 0"}
 
