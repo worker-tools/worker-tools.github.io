@@ -43,15 +43,17 @@ If an extendable promise is created without supplying an initial promise, it is 
 
 Initializing it with a synchronous value or a settled promise immediately settles the extendable promise with that value and all calls to `waitUntil` are no-ops.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/extendable-promise)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/extendable-promise/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/extendable-promise/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/extendable-promise) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/extendable-promise/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/extendable-promise/)
 · [__deno.land__](https://deno.land/x/extendable_promise)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/extendable-promise/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/extendable-promise/master/index.ts)
 {:.faded}
 <br/>

@@ -35,15 +35,17 @@ In CF Workers, add the following to your `wrangler.toml` to define this variable
   WORKER_LOCATION = 'http://localhost:8787'
 ```
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/location-polyfill)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/location-polyfill/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/location-polyfill/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/location-polyfill) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/location-polyfill/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/location-polyfill/)
 · [__deno.land__](https://deno.land/x/location_polyfill)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/location-polyfill/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/location-polyfill/master/index.ts)
 {:.faded}
 <br/>

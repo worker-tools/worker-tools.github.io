@@ -165,15 +165,17 @@ export default withMiddleware(
 )
 ```
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/middleware)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/middleware/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/middleware/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/middleware) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/middleware/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/middleware/)
 · [__deno.land__](https://deno.land/x/workers_middleware)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/middleware/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/middleware/master/index.ts)
 {:.faded}
 <br/>

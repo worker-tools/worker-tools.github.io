@@ -16,15 +16,17 @@ but written in a platform-agnostic way.
 * Table of Contents
 {:toc .large-only}
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/signed-cookie-store)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/signed-cookie-store/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/signed-cookie-store/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/signed-cookie-store) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/signed-cookie-store/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/signed-cookie-store/)
 · [__deno.land__](https://deno.land/x/signed_cookie_store)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/signed-cookie-store/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/signed-cookie-store/master/index.ts)
 {:.faded}
 <br/>

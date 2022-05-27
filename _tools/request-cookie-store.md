@@ -97,15 +97,17 @@ _This is not a polyfill! It is intended as a cookie middleware for Cloudflare Wo
 
 [wks]: https://workers.js.org/
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/request-cookie-store)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/request-cookie-store/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/request-cookie-store/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/request-cookie-store) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/request-cookie-store/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/request-cookie-store/)
 · [__deno.land__](https://deno.land/x/request_cookie_store)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/request-cookie-store/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/request-cookie-store/master/index.ts)
 {:.faded}
 <br/>

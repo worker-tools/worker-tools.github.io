@@ -37,7 +37,7 @@ redirects to `https://raw.githubusercontent.com/worker-tools/middleware/v0.1.0-p
 
 Because GHUC.cc _keeps it simple_ and uses redirects you don't have to worry about it reaching GH API rate limits, etc.
 
-GHUC.cc accpets any GitHub tag or branch as a version specifier. For example, to redirect to the `dev` branch use `worker-tools/middleware@dev/index.ts`
+GHUC.cc accepts any GitHub tag or branch as a version specifier. For example, to redirect to the `dev` branch use `worker-tools/middleware@dev/index.ts`
 
 You can also leave out the version suffix, in which case GHUC.cc will redirect to the repository's default branch:
 

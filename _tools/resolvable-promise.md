@@ -19,15 +19,17 @@ promise.then(x => console.log('Resolved!', x))
 promise.resolve({ foo: 'bar' })
 ```
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/resolvable-promise)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/resolvable-promise/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/resolvable-promise/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/resolvable-promise) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/resolvable-promise/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/resolvable-promise/)
 · [__deno.land__](https://deno.land/x/resolvable_promise)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/resolvable-promise/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/resolvable-promise/master/index.ts)
 {:.faded}
 <br/>

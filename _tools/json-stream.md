@@ -276,15 +276,17 @@ function toReadableStream<T>(iter: Iterable<T>) {
 }
 ```
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/json-stream)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/json-stream/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/json-stream/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/json-stream) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/json-stream/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/json-stream/)
 · [__deno.land__](https://deno.land/x/json_stream)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/json-stream/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/json-stream/master/index.ts)
 {:.faded}
 <br/>

@@ -58,15 +58,17 @@ self.addEventListener('error', event => {
 });
 ```
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/deno-fetch-event-adapter)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/deno-fetch-event-adapter/mod.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/deno-fetch-event-adapter/mod.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/deno-fetch-event-adapter) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/deno-fetch-event-adapter/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/deno-fetch-event-adapter/)
 · [__deno.land__](https://deno.land/x/fetch_event_adapter)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-fetch-event-adapter/master/mod.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-fetch-event-adapter/master/mod.ts)
 {:.faded}
 <br/>

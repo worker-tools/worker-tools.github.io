@@ -44,15 +44,17 @@ router.get('/sse', contentType(['text/event-stream']), (req, { type }) => {
 
 *[SSE]: Server Sent Events
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/stream-response)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/stream-response/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/stream-response/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/stream-response) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/stream-response/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/stream-response/)
 · [__deno.land__](https://deno.land/x/stream_response)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/stream-response/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/stream-response/master/index.ts)
 {:.faded}
 <br/>

@@ -15,17 +15,30 @@ export function getTitleDescription(markdown: string) {
 
 const nl = '\n\n'
 
+export async function latestVersion(cwd: string) {
+  return new TextDecoder().decode(
+    await Deno.run({ cmd: ['git', 'describe', '--tags', '--abbrev=0'], stdout: 'piped', stderr: 'null', cwd }).output()
+  )?.trim()?.replace(/^v/, '') || '0.0.0'
+}
+
 for await (const dir of Deno.readDir('../packages')) {
   if (dir.isDirectory && !dir.name.startsWith('.')) {
+    if (dir.name.endsWith('-wasm')) continue;
+
+    const latest = await latestVersion(`../packages/${dir.name}`)
+    if (latest === '0.0.0') continue;
+
     const README = (await Deno.readTextFile(`../packages/${dir.name}/README.md`).catch(() => '')).trim()
     if (!README) continue;
+
     const [, description] = getTitleDescription(README)
 
     const [heading, sub, ...lines] = README
       .replaceAll(/https?:\/\/github.com\/worker-tools\/?/g, '../')
+      .replace(/--------(?:.(?!--------))+$/s, '') // remove the footer
       .split(nl)
 
-    const denoName = ['router', 'middleware', 'html'].includes(dir.name) 
+    const denoName = ['router', 'middleware', 'html'].includes(dir.name)
       ? `workers_${dir.name.replaceAll('-', '_')}`
       : dir.name.startsWith('deno-')
         ? dir.name.replace('deno-', '').replaceAll('-', '_')
@@ -64,11 +77,11 @@ for await (const dir of Deno.readDir('../packages')) {
 
       Links:
       [__GitHub__](${links.github})
-      / [ghuc.cc](${links.ghuc})
+      | [ghuc.cc](${links.ghuc})
       · [__NPM__](${links.npm}) 
-      / [Browse Package](${links.unpkg})
+      | [Browse Package](${links.unpkg})
       · [__deno.land__](${links.deno})
-      / [Docs](${links.docs})
+      | [Docs](${links.docs})
       {:.faded}
       <br/>
     `;

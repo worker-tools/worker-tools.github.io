@@ -69,15 +69,17 @@ await new HTMLRewriter()
 - Because this version isn't based on streaming data, the order in which handlers are called can differ. Some measure have been taken to simulate the order, but differences may occur.
 - Texts never arrive in chunks. There is always just one chunk, followed by an empty one with `lastInTextNode` set to `true`.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/parsed-html-rewriter)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/parsed-html-rewriter/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/parsed-html-rewriter/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/parsed-html-rewriter) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/parsed-html-rewriter/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/parsed-html-rewriter/)
 · [__deno.land__](https://deno.land/x/parsed_html_rewriter)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/parsed-html-rewriter/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/parsed-html-rewriter/master/index.ts)
 {:.faded}
 <br/>

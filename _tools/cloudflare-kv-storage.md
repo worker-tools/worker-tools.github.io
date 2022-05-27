@@ -69,15 +69,17 @@ Beyond the cross-worker-env aspects of using StorageArea, CloudflareStorageArea 
 Note that efficiency is not a goal. Specifically, if you have sizable `ArrayBuffer`s,
 it's much better to use Cloudflare's KV directly.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/cloudflare-kv-storage)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/cloudflare-kv-storage/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/cloudflare-kv-storage/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/cloudflare-kv-storage) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/cloudflare-kv-storage/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/cloudflare-kv-storage/)
 · [__deno.land__](https://deno.land/x/cloudflare_kv_storage)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/cloudflare-kv-storage/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/cloudflare-kv-storage/master/index.ts)
 {:.faded}
 <br/>

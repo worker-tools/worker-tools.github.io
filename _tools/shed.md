@@ -81,10 +81,10 @@ npm install @worker-tools/shed
 
 Links:
 [__GitHub__](https://github.com/worker-tools/shed)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/shed/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/shed/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/shed) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/shed/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/shed/)
 · [__deno.land__](https://deno.land/x/shed)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/shed/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/shed/master/index.ts)
 {:.faded}
 <br/>

@@ -79,15 +79,17 @@ Beyond the cross-worker-env aspects of using StorageArea, it aso provides a numb
 Note that efficiency is not a goal. Specifically, if you have sizable `ArrayBuffer`s,
 it's better to use a database implementation with proper support for binary data.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/deno-kv-storage)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/deno-kv-storage/mod.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/deno-kv-storage/mod.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/deno-kv-storage) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/deno-kv-storage/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/deno-kv-storage/)
 · [__deno.land__](https://deno.land/x/kv_storage)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-kv-storage/master/mod.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/deno-kv-storage/master/mod.ts)
 {:.faded}
 <br/>

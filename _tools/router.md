@@ -8,18 +8,12 @@ description: >
 # Worker Router
 A router for [Worker Runtimes](https://workers.js.org) such as Cloudflare Workers and Service Workers.
 
-***
+This router is inspired by previous work, specifically `tiny-request-router` and `itty-router`, but it
+improves on them by providing better support for middleware, type inference, nested routing, and broader URL matching for use in service workers.
 
 <noscript></noscript>
 * Table of Contents
 {:toc .large-only}
-
-__Work In Progress__
-
-***
-
-This router is inspired by previous work, specifically `tiny-request-router` and `itty-router`, but it
-improves on them by providing better support for middleware, type inference, nested routing, and broader URL matching for use in service workers.
 
 ## 🆓 Type Inference
 The goal of Worker Router is to *infer types based on usage* so that **no explicit typing** is required for standard use cases.
@@ -37,7 +31,8 @@ In this example your editor can infer the types and documentation for
 
 
 ## 🔋 Functional Middleware
-Worker Router middlewares are *just function* that add properties to a generic context object. As such, they can be *mixed and matched* using standard tools from functional programming.
+Worker Router [middlewares](https://workers.tools/middleware) are *just function* that add properties to a generic context object. 
+As such, they can be *mixed and matched* using standard tools from functional programming.
 
 For convenience, this module provides a `combine` utility to combine multiple middlewares into one.
 
@@ -125,15 +120,17 @@ serve(router.serveCallback)
 At it's core, Worker Router is a function of `(req: Request, ctx: Context) => Promise<Response>`. In this model, 
 middleware is another function that *adds* properties to the context, which is fully tracked by the type system. Conversely, middleware that is not applied is also absent and not polluting the context object. -->
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/router)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/router/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/router/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/router) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/router/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/router/)
 · [__deno.land__](https://deno.land/x/workers_router)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/router/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/router/master/index.ts)
 {:.faded}
 <br/>

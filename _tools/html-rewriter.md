@@ -80,15 +80,17 @@ make dist
 
 This will build a custom version of `wasm-pack` first, then use it to compile `lol-html` to WASM. Please see the submodules for details on why this is necessary.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/html-rewriter)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/html-rewriter/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/html-rewriter/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/html-rewriter) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/html-rewriter/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/html-rewriter/)
 · [__deno.land__](https://deno.land/x/html_rewriter)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/html-rewriter/master/index.ts)
 {:.faded}
 <br/>

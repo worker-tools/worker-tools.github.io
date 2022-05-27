@@ -59,15 +59,17 @@ const response = await fetch(new JSONRequest('/some', {
 This will send the body as form-data/multipart with correct content type header, as in the original Fetch API. 
 Only difference is that the `Accept` header will be set to indicate preference for `application/json`, i.e. anticipating a JSON response from the server.
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/json-fetch)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/json-fetch/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/json-fetch/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/json-fetch) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/json-fetch/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/json-fetch/)
 · [__deno.land__](https://deno.land/x/json_fetch)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/json-fetch/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/json-fetch/master/index.ts)
 {:.faded}
 <br/>

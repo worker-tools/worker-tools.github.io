@@ -16,6 +16,10 @@ selected_projects:
 
 Worker Tools are a collection of TypeScript libraries for writing web servers in [Worker Runtimes][wkrs] such as [Cloudflare Workers][cfws] and [Deno Deploy][dndp]. 
 
+[wkrs]: https://workers.js.org
+[cfws]: https://workers.cloudflare.com
+[dndp]: https://deno.com/deploy
+
 * Table of Contents
 {:toc .large-only}
 
@@ -23,11 +27,11 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 - 🧭 [__Worker Router__][router]{:.flip-title} --- Complete routing solution that works across CF Workers, Deno and Service Workers
 - 🔋 [__Worker Middleware__][middleware]{:.flip-title} --- A suite of standalone HTTP server-side middleware with TypeScript support
 - 📄 [__Worker HTML__][html]{:.flip-title} --- HTML templating and streaming response library
-- 📦 [__Storage Area__][kv-storage] --- Key-Value Storage abstraction for [Cloudflare's KV][cloudflare-kv-storage], [Deno][deno-kv-storage] and browsers.
+- 📦 [__Storage Area__][kv-storage] --- Key-value store abstraction across [Cloudflare KV][cloudflare-kv-storage], [Deno][deno-kv-storage] and browsers.
 - 🆗 [__Response Creators__][response-creators]{:.flip-title} --- Factory functions for responses with pre-filled status and status text
 - 🎏 [__Stream Response__][stream-response]{:.flip-title} --- Use async generators to build streaming responses for SSE, etc...
 - 🥏 [__JSON Fetch__][json-fetch]{:.flip-title} --- Drop-in replacements for Fetch API classes with first class support for JSON.
-- 🦑 [__JSON Stream__][json-stream]{:.flip-title} --- Utilities for working with streaming JSON.
+- 🦑 [__JSON Stream__][json-stream]{:.flip-title} --- Streaming JSON parser/stingifier with 1st class support for WHATWG/web streams.
 - 🍪 [__Request Cookie Store__][request-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers.
 - ⏱ [__Extendable Promise__][extendable-promise]{:.flip-title} --- A promise that can be delayed/extended via repeated calls to `waitUntil`.
 <!-- - 🍪 [__Signed Cookie Store__][signed-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers. -->
@@ -39,10 +43,10 @@ Worker Tools also includes a number of polyfills that help bridge the gap betwee
 - 📍 [__Location Polyfill__][location-polyfill]{:.flip-title} --- A `Location` polyfill for Cloudflare Workers.
 - 🦕 [__Deno Fetch Event Adapter__][deno-fetch-event-adapter]{:.flip-title} --- Dispatches global `fetch` events using Deno’s native HTTP server.
 
+### Services
 Worker Tools also maintains a number of (web-) services:
 - ⚙️ [__workers.js.org__][wkrs] --- Educational site about the state of Worker Runtimes.
 - 🦕 [__ghuc.cc__][ghuc] --- Import modules directly from GitHub into Deno with a familiar API. 
-<!-- - 🗞 [__worker-news.deno.dev__][news] --- A drop-in replacement for Hacker News, built entirely with Worker Tools. -->
 
 [router]: ./router
 [middleware]: ./middleware
@@ -64,11 +68,6 @@ Worker Tools also maintains a number of (web-) services:
 [encrypted-cookie-store]: ./encrypted-cookie-store
 [resolvable-promise]: ./resolvable-promise
 
-*[SSE]: Server Sent Events
-
-[wkrs]: https://workers.js.org
-[cfws]: https://workers.cloudflare.com
-[dndp]: https://deno.com
 [ghuc]: https://ghuc.cc
 [news]: https://worker-news.deno.dev
 

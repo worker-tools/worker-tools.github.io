@@ -49,15 +49,17 @@ event.respondWith(
 
 Due to signature of the `Response` constructor, the opposite order (`badRequest(new JSONResponse({ error: '...' }))`) does not work!
 
+
+
 ***
 {:style="margin: 2rem 0"}
 
 Links:
 [__GitHub__](https://github.com/worker-tools/response-creators)
-/ [ghuc.cc](https://ghuc.cc/worker-tools/response-creators/index.ts)
+| [ghuc.cc](https://ghuc.cc/worker-tools/response-creators/index.ts)
 · [__NPM__](https://www.npmjs.com/package/@worker-tools/response-creators) 
-/ [Browse Package](https://unpkg.com/browse/@worker-tools/response-creators/)
+| [Browse Package](https://unpkg.com/browse/@worker-tools/response-creators/)
 · [__deno.land__](https://deno.land/x/response_creators)
-/ [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/response-creators/master/index.ts)
+| [Docs](https://doc.deno.land/https://raw.githubusercontent.com/worker-tools/response-creators/master/index.ts)
 {:.faded}
 <br/>
