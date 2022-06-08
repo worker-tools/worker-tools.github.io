@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://workers.tools/feed.xml" rel="self" type="application/atom+xml" /><link href="https://workers.tools/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-06-08T06:35:18+00:00</updated><id>https://workers.tools/feed.xml</id><title type="html">Worker Tools</title><subtitle>Worker Tools are a collection of TypeScript libraries for writing web servers in Worker Runtimes such as Cloudflare Workers. Workers Tools accomplish many of the same goals as a web framework, but they are provided as standalone libraries.
+</subtitle><author><name>Florian Klampfer</name><email>mail@qwtel.com</email></author><entry><title type="html">How To Use HTMLRewriter for Web Scraping</title><link href="https://workers.tools/guides/2022-02-19-how-to-use-htmlrewriter-for-web-scraping/" rel="alternate" type="text/html" title="How To Use HTMLRewriter for Web Scraping" /><published>2022-02-19T00:00:00+00:00</published><updated>2022-06-08T06:29:45+00:00</updated><id>https://workers.tools/guides/how-to-use-htmlrewriter-for-web-scraping</id><content type="html" xml:base="https://workers.tools/guides/2022-02-19-how-to-use-htmlrewriter-for-web-scraping/"><![CDATA[<p>Cloudflare Workers comes with a streaming HTML rewriting tool programmatically called HTMLRewriter. Unlike HTML parses like <a href="https://github.com/jsdom/jsdom">jsdom</a> or <a href="https://github.com/WebReflection/linkedom">linkedom</a>, it works at a fraction of their CPU and memory cost since it will simply “pass through” any elements that aren’t explicitly requested. 
+This makes it also interesting for efficiently scraping web content in Cloudflare Workers.</p>
+
+<p class="note faded"><em>Web scraping is getting increasingly difficult, ironically not least due to Cloudflare’s own Scrape Shield, which deploys various techniques such as TLS fingerprinting to determine who is accessing a site. CF Workers doesn’t hide the fact that it is not a User Agent (i.e. browser). It is only suitable for light scraping uses. Of course the same applies to any HTMLRewriter use case.</em></p>
+
+<p>In this post we’ll be implementing a custom Hacker News API by scraping its HTML frontend, the same approach used by the <a href="https://github.com/cheeaun/node-hnapi">unofficial HN API for Node</a>. The examples are taken from  <a href="../../_projects/worker-news.md" class="flip-title heading">Worker News</a>.</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>At first glace, HTMLRewriter is a poor fit for HTML scraping. It’s API is geared towards rewriting a HTML response, not extracting data from it. 
+To familiarize ourselves with the API, here is a slightly modified example from Cloudflare’s <a href="https://developers.cloudflare.com/workers/tutorials/localize-a-website">tutorial</a>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">fetch</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ev</span> <span class="o">=&gt;</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">handleEvent</span><span class="p">(</span><span class="nx">ev</span><span class="p">)))</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">handleEvent</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getAssetFromKV</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">HTMLRewriter</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">[data-i18n-key]</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// &lt;-- Everything callback-based</span>
+        <span class="kd">const</span> <span class="nx">i18nKey</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-i18n-key</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">strings</span><span class="p">[</span><span class="nx">i18nKey</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="nx">el</span><span class="p">.</span><span class="nx">setInnerContent</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+      <span class="p">},</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="c1">// &lt;-- Returns a `Response`</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>First, we note that everything in HTMLRewriter is callback-based.
+Second, we note its transform API: It expects to turn one <code class="language-plaintext highlighter-rouge">Response</code> into another. 
+When web scraping, we just want to <em>consume</em> a response but not process it in any further or send it to the client.</p>
+
+<p>Besides these ergonomic inconveniences, its biggest drawback is its lack of “inner HTML” API. HTML Rewriter can notify us of element tags or text chunks, but it can’t give us the contents of an entire subtree in the DOM.
+There is hope that this will be implemented in the future, but for now we’ve have to work around this. The recently added (still undocumented) <code class="language-plaintext highlighter-rouge">onEndTag</code> feature finally gives us the tool to make this possible.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#consuming-a-response" id="markdown-toc-consuming-a-response">Consuming a Response</a>    <ul>
+      <li><a href="#streaming-consume" id="markdown-toc-streaming-consume">Streaming Consume</a></li>
+    </ul>
+  </li>
+  <li><a href="#extracting-data" id="markdown-toc-extracting-data">Extracting Data</a>    <ul>
+      <li><a href="#extracting-data-streams" id="markdown-toc-extracting-data-streams">Extracting Data Streams</a></li>
+    </ul>
+  </li>
+  <li><a href="#extracting-html-subtrees" id="markdown-toc-extracting-html-subtrees">Extracting HTML Subtrees</a></li>
+  <li><a href="#appendix" id="markdown-toc-appendix">Appendix</a>    <ul>
+      <li><a href="#custom-event-polyfill" id="markdown-toc-custom-event-polyfill">Custom Event Polyfill</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="consuming-a-response">Consuming a Response</h2>
+<p>We first work around the <code class="language-plaintext highlighter-rouge">transform</code> issue. What makes the example above work is the fact that the <code class="language-plaintext highlighter-rouge">Response</code> provided by <code class="language-plaintext highlighter-rouge">transform</code> is passed to <code class="language-plaintext highlighter-rouge">respondWith</code> in the fetch event.  This causes data to be <em>pulled</em> from the stream as it makes its way towards the (browser) client, which sets the whole streaming pipeline in motion.</p>
+
+<p>Since we won’t be sending the craping response to the client, we need a different way to pull data from the stream. A quick and dirty solution is to just await <code class="language-plaintext highlighter-rouge">.text()</code> on the transformed response. But this causes the entire response body to be loaded into a string:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://news.ycombinator.com</span><span class="dl">'</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Scrape shield encountered!</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">rewriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HTMLRewriter</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">.athing[id]</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">element</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* TODO */</span> <span class="p">}</span>
+  <span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">_text</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">rewriter</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>While this works, it’s still not ideal since it will force the entire document into memory at one point, only to be discarded right afterwards.</p>
+
+<h3 id="streaming-consume">Streaming Consume</h3>
+<p>A better solution is to consume the response stream chunk by chunk:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">consume</span><span class="p">(</span><span class="nx">stream</span><span class="p">:</span> <span class="nx">ReadableStream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stream</span><span class="p">.</span><span class="nx">getReader</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">await</span> <span class="nx">reader</span><span class="p">.</span><span class="nx">read</span><span class="p">()).</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* NOOP */</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">await</span> <span class="nx">consume</span><span class="p">(</span><span class="nx">rewriter</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">body</span><span class="o">!</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">consume</code> helper function, as the name suggests, pulls every chunk from the stream and discards it. 
+By accepting a readable stream we keep it generic enough to accept other types of readable streams as well. In the case of a Fetch API <code class="language-plaintext highlighter-rouge">Response</code>, we access its stream via the <code class="language-plaintext highlighter-rouge">.body</code> property.</p>
+
+<h2 id="extracting-data">Extracting Data</h2>
+<p>With the transform pipeline set in motion, we can focus turn our attention to the callbacks. Once again, we start with a quick and dirty solution (that may very well be good enough for your use case) and then improve it later.</p>
+
+<p>In the code below we extract the Hacker News item id from every post on the landing page:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ids</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="kd">const</span> <span class="nx">rewriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HTMLRewriter</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">.athing[id]</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">element</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ids</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+
+<span class="k">await</span> <span class="nx">consume</span><span class="p">(</span><span class="nx">rewriter</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">body</span><span class="o">!</span><span class="p">)</span>
+
+<span class="c1">// `ids` is now populated:</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We use good old <em>imperative programming and async/await</em> to populate our <code class="language-plaintext highlighter-rouge">ids</code> array. As I said earlier, this may very well be good enough for you, but it does have the drawback of consuming the entire response before we continue processing the ids. In other words, we lose the streaming aspect of HTMLRewriter.</p>
+
+<h3 id="extracting-data-streams">Extracting Data Streams</h3>
+<p>A more fancy approach is to turn the callbacks into an async iterable that we process as data arrives in a <code class="language-plaintext highlighter-rouge">for await</code> loop. For a refresher on asynchronous data processing in JavaScript, see my own <a href="https://qwtel.com/posts/software/async-generators-in-the-wild/" class="heading">Async Generators in the Wild</a>.</p>
+
+<p>Turning a (multi-)callback API into an async iterable is not trivial. It involves two steps:</p>
+<ol>
+  <li>First we turn callback invocations into events,</li>
+  <li>then we use a utility function to turn the event stream into an async iterable.</li>
+</ol>
+
+<p>The utility function is provided by yours truly as <a href="https://www.npmjs.com/package/event-target-to-async-iter"><code class="language-plaintext highlighter-rouge">event-target-to-async-iter</code></a>, but the code is simply an adaptation of Node’s <a href="https://github.com/nodejs/node/blob/5b59e14dafb43b907e711cb418bb9c302bce2890/lib/events.js#L1017"><code class="language-plaintext highlighter-rouge">on</code></a> utility function with the Node-specific parts removed.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventTarget</span><span class="p">();</span> <span class="c1">// 1</span>
+
+<span class="kd">const</span> <span class="nx">rewriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HTMLRewriter</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">.athing[id]</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">element</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">target</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>  <span class="c1">// 2</span>
+        <span class="na">detail</span><span class="p">:</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">)</span> 
+      <span class="p">}));</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">iter</span> <span class="o">=</span> <span class="nx">evenTargetToAsyncIter</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 3</span>
+
+<span class="nx">consume</span><span class="p">(</span><span class="nx">rewriter</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">body</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 4</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="k">throw</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span> <span class="c1">// 5</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">iter</span><span class="p">.</span><span class="k">return</span><span class="p">())</span> <span class="c1">// 6</span>
+
+<span class="k">for</span> <span class="k">await</span> <span class="p">(</span><span class="kd">const</span> <span class="p">{</span> <span class="na">detail</span><span class="p">:</span> <span class="nx">id</span> <span class="p">}</span> <span class="k">of</span> <span class="nx">iter</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 7</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>There is a lot to unpack here. 
+First of all, any experienced developer will undoubtedly spot the many of ways of making this more ergonomic, but for our purposes here I left it as verbose as is.</p>
+
+<p>The goal is to process scraped data in (7) via <code class="language-plaintext highlighter-rouge">for await</code> loop. 
+This leaves us with many opportunities down the line, such as streaming JSON for APIs, streaming HTML, Server Sent Events, etc…</p>
+
+<p>While it is possible to dispatch events on the global scope (which implements <code class="language-plaintext highlighter-rouge">EventTarget</code>), it is advisable to use a new <code class="language-plaintext highlighter-rouge">EventTarget</code> as in (1) instead. Recent compatibility dates of CF Workers support this out of the box.</p>
+
+<p>Unfortunately the same can’t be said for <code class="language-plaintext highlighter-rouge">CustomEvent</code> (2), but a <a href="#custom-event-polyfill">minimal polyfill</a> is trivially implemented. 
+Custom Events are good use here, as the provide a generic <code class="language-plaintext highlighter-rouge">detail</code> property that we can use to store data. 
+We fire them under the generic <code class="language-plaintext highlighter-rouge">data</code> event name. You can pick anything here, it only needs to match the key used in (3).</p>
+
+<p>In (3) we turn the event target into an async iterable. Note that this only sets up queues and event listeners, but does not do anything by itself.</p>
+
+<p>The process only starts once we start pulling data in (4). What’s important is that <strong>we do not <code class="language-plaintext highlighter-rouge">await</code> here</strong>! Doing so would defeat the purpose of setting up the streaming pipeline, as we wait for the entire response to be consumed (filling up the internal queues of <code class="language-plaintext highlighter-rouge">eventTargetToAsyncIter</code>) before continuing the execution.</p>
+
+<p>Not awaiting a promise opens us up to the possibility of an unhandled exception, so we need catch it in (5) and forward it to the async iterable via <code class="language-plaintext highlighter-rouge">throw()</code>. This will cause the error to show up in (7) during for await looping.</p>
+
+<p>Finally, in (6) we prevent for-await from getting stuck in an endless loop. Event targets, unlike async iterables, do not have a concept of an end, so we manually call <code class="language-plaintext highlighter-rouge">return()</code> on the iterable when the response stream is fully consumed.</p>
+
+<h2 id="extracting-html-subtrees">Extracting HTML Subtrees</h2>
+<p>We make up for HTMLRewriter’s lack of <code class="language-plaintext highlighter-rouge">innerHTML</code> by combining two selectors and use of the recently added <code class="language-plaintext highlighter-rouge">onEndTag</code> API:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">commText</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">rewriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HTMLRewriter</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">.fatitem .commtext</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// 1</span>
+    <span class="nx">text</span><span class="p">({</span> <span class="nx">text</span> <span class="p">})</span> <span class="p">{</span> <span class="nx">commText</span> <span class="o">+=</span> <span class="nx">text</span> <span class="p">}</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">.fatitem .commtext *</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// 2</span>
+    <span class="nx">element</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="kd">const</span> <span class="nx">maybeAttrs</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">el</span><span class="p">.</span><span class="nx">attributes</span><span class="p">].</span><span class="nx">map</span><span class="p">(([</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="s2">` </span><span class="p">${</span><span class="nx">k</span><span class="p">}</span><span class="s2">="</span><span class="p">${</span><span class="nx">v</span><span class="p">}</span><span class="s2">"`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+      <span class="nx">commText</span> <span class="o">+=</span> <span class="s2">`&lt;</span><span class="p">${</span><span class="nx">el</span><span class="p">.</span><span class="nx">tagName</span><span class="p">}${</span><span class="nx">maybeAttrs</span><span class="p">}</span><span class="s2">&gt;`</span><span class="p">;</span>
+      <span class="nx">el</span><span class="p">.</span><span class="nx">onEndTag</span><span class="p">(</span><span class="nx">endTag</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+        <span class="nx">commText</span> <span class="o">+=</span> <span class="s2">`&lt;/</span><span class="p">${</span><span class="nx">endTag</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">&gt;`</span><span class="p">;</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</code></pre></div></div>
+
+<p>If we only used the first selector and applied it to, e.g. <a href="https://news.ycombinator.com/item?id=26631078">this comment</a> we would get the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>There's lots of things going on this this space. It seems every other day I discover another 
+Cloudflare Workers-like implementation (granted, most of them are for testing/development). 
+I'm cataloging them here for anyone who's interested: https://workers.js.org
+</code></pre></div></div>
+
+<p>This seems correct at first, but it is missing the <code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> tag on the link. This works because the <code class="language-plaintext highlighter-rouge">text</code> callback delivers every text chunk in the entire subtree. It does however ignore all the tags.</p>
+
+<p>Once we add the second selector with the extra <code class="language-plaintext highlighter-rouge">*</code>, we are notified of <em>all</em> opening and closing tags <em>in the entire subtree</em> and can append them to the string. 
+Because HTMLRewriter is a stream processor internally, we can expect these callbacks to be called in the correct order.</p>
+
+<p><br /></p>
+
+<h2 id="appendix">Appendix</h2>
+<h3 id="custom-event-polyfill">Custom Event Polyfill</h3>
+<p>Note that this is by no means a spec-compliant implementation of CustomEvent, but it works for our purpose here.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="dl">'</span><span class="s1">CustomEvent</span><span class="dl">'</span> <span class="k">in</span> <span class="nb">self</span><span class="p">))</span> <span class="p">{</span>
+  <span class="kd">class</span> <span class="nx">CustomEvent</span><span class="o">&lt;</span><span class="nx">T</span> <span class="o">=</span> <span class="kr">any</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nx">Event</span> <span class="p">{</span>
+    <span class="k">readonly</span> <span class="nx">detail</span><span class="p">:</span> <span class="nx">T</span><span class="p">;</span> 
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="p">{</span> <span class="nx">detail</span> <span class="p">}:</span> <span class="nx">CustomEventInit</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">super</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">detail</span> <span class="o">=</span> <span class="nx">detail</span> <span class="k">as</span> <span class="nx">T</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="dl">'</span><span class="s1">CustomEvent</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">configurable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">enumerable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">writable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">value</span><span class="p">:</span> <span class="nx">CustomEvent</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Florian Klampfer</name><email>mail@qwtel.com</email></author><category term="guides" /><summary type="html"><![CDATA[In this post we'll be implementing a custom Hacker News API by scraping its HTML frontend, the same approach used by the unofficial HN API for Node.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://workers.tools/assets/img/hn.jpeg" /><media:content medium="image" url="https://workers.tools/assets/img/hn.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
