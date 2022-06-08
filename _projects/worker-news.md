@@ -10,13 +10,12 @@ image:
     640w:  /assets/img/projects/worker-news@0,25x.jpg
 links:
   - title: Website
-    url: https://worker-news.deno.dev
-  - title: GitHub
+    url: https://news.workers.tools
+  - title: Source
     url: https://github.com/worker-tools/worker-news
 caption: A drop-in replacement* for Hacker News
 description: >
   Worker News is a drop-in replacement* for Hacker News with support for dark mode and block quotes.
-invert_sidebar:        true
 ---
 
 A drop in replacement for Hacker News with support for dark mode, quotes in comments, user identicons and submission favicons. 

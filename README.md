@@ -10,6 +10,7 @@ buttons: >
 selected_projects:
   - _projects/worker-news.md
   - _projects/ghuc.md
+  - _projects/webauthn.md
 ---
 
 # Worker Tools
@@ -32,6 +33,7 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 - 🎏 [__Stream Response__][stream-response]{:.flip-title} --- Use async generators to build streaming responses for SSE, etc...
 - 🥏 [__JSON Fetch__][json-fetch]{:.flip-title} --- Drop-in replacements for Fetch API classes with first class support for JSON.
 - 🦑 [__JSON Stream__][json-stream]{:.flip-title} --- Streaming JSON parser/stingifier with 1st class support for WHATWG/web streams.
+- 🧱 [__Structured JSON__][structured-json]{:.flip-title} --- Stringify and parse JavaScript values according to Structured Clone Algorithm
 - 🍪 [__Request Cookie Store__][request-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers.
 - ⏱ [__Extendable Promise__][extendable-promise]{:.flip-title} --- A promise that can be delayed/extended via repeated calls to `waitUntil`.
 <!-- - 🍪 [__Signed Cookie Store__][signed-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers. -->
@@ -67,6 +69,7 @@ Worker Tools also maintains a number of (web-) services:
 [signed-cookie-store]: ./signed-cookie-store
 [encrypted-cookie-store]: ./encrypted-cookie-store
 [resolvable-promise]: ./resolvable-promise
+[structured-json]: ./structured-json
 
 [ghuc]: https://ghuc.cc
 [news]: https://worker-news.deno.dev
