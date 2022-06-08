@@ -50,26 +50,26 @@ Worker Tools also maintains a number of (web-) services:
 - ⚙️ [__workers.js.org__][wkrs] --- Educational site about the state of Worker Runtimes.
 - 🦕 [__ghuc.cc__][ghuc] --- Import modules directly from GitHub into Deno with a familiar API. 
 
-[router]: ./router
-[middleware]: ./middleware
-[html]: ./html
-[kv-storage]: ./kv-storage
-[cloudflare-kv-storage]: ./cloudflare-kv-storage
-[deno-kv-storage]: ./deno-kv-storage
-[kv-storage-polyfill]: ./kv-storage-polyfill
-[response-creators]: ./response-creators
-[stream-response]: ./stream-response
-[json-fetch]: ./json-fetch
-[json-stream]: ./json-stream
-[request-cookie-store]: ./request-cookie-store
-[extendable-promise]: ./extendable-promise
-[html-rewriter]: ./html-rewriter
-[location-polyfill]: ./location-polyfill
-[deno-fetch-event-adapter]: ./deno-fetch-event-adapter
-[signed-cookie-store]: ./signed-cookie-store
-[encrypted-cookie-store]: ./encrypted-cookie-store
-[resolvable-promise]: ./resolvable-promise
-[structured-json]: ./structured-json
+[router]: _tools/router.md
+[middleware]: _tools/middleware.md
+[html]: _tools/html.md
+[kv-storage]: _tools/kv-storage.md
+[cloudflare-kv-storage]: _tools/cloudflare-kv-storage.md
+[deno-kv-storage]: _tools/deno-kv-storage.md
+[kv-storage-polyfill]: _tools/kv-storage-polyfill.md
+[response-creators]: _tools/response-creators.md
+[stream-response]: _tools/stream-response.md
+[json-fetch]: _tools/json-fetch.md
+[json-stream]: _tools/json-stream.md
+[request-cookie-store]: _tools/request-cookie-store.md
+[extendable-promise]: _tools/extendable-promise.md
+[html-rewriter]: _tools/html-rewriter.md
+[location-polyfill]: _tools/location-polyfill.md
+[deno-fetch-event-adapter]: _tools/deno-fetch-event-adapter.md
+[signed-cookie-store]: _tools/signed-cookie-store.md
+[encrypted-cookie-store]: _tools/encrypted-cookie-store.md
+[resolvable-promise]: _tools/resolvable-promise.md
+[structured-json]: _tools/structured-json.md
 
 [ghuc]: https://ghuc.cc
 [news]: https://worker-news.deno.dev
