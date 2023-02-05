@@ -35,7 +35,7 @@ Worker Tools are a collection of TypeScript libraries for writing web servers in
 - 🦑 [__JSON Stream__][json-stream]{:.flip-title} --- Streaming JSON parser/stingifier with 1st class support for WHATWG/web streams.
 - 🧱 [__Structured JSON__][structured-json]{:.flip-title} --- Stringify and parse JavaScript values according to Structured Clone Algorithm
 - 🍪 [__Request Cookie Store__][request-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers.
-- ⏱ [__Extendable Promise__][extendable-promise]{:.flip-title} --- A promise that can be delayed/extended via repeated calls to `waitUntil`.
+- ⏱ [__Extendable Promise__][extendable-promise]{:.flip-title} --- A promise that can be delayed/extended by calling `waitUntil`.
 <!-- - 🍪 [__Signed Cookie Store__][signed-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers. -->
 <!-- - 🍪 [__Encrypted Cookie Store__][encrypted-cookie-store]{:.flip-title} --- An implementation of the Cookie Store API for use in request handlers. -->
 <!-- - ⏱ [__Resolvable Promise__][resolvable-promise]{:.flip-title} --- A promise that is resolvable or rejectable after it was created. -->
